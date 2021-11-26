@@ -22,12 +22,12 @@ public class Cosmetics extends Product{
     }
 
     @Override
-    public void setID(Integer id) {
+    public void setID(int id) {
         this.ID = id;
     }
 
     @Override
-    public Integer getID() {
+    public int getID() {
         return this.ID;
     }
 }
