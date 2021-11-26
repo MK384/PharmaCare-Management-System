@@ -1,5 +1,6 @@
 package DynamicArea.Head.Interfaces;
 
+import DynamicArea.Pack;
 import DynamicArea.Product;
 import java.util.List;
 
