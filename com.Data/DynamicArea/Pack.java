@@ -1,12 +1,22 @@
 package DynamicArea;
 import java.util.Date;
+
+
+/**
+ * this interface type holds all the plain info about a package of product.
+ */
+
 public class Pack {
+
+
+
    private Product product;
    private Integer quantity;
    private Integer price;
    private String provider;
    private Date expDate;
    private Date loadDate;
+
 
    public Product getProduct() {
       return product;
@@ -55,4 +65,6 @@ public class Pack {
    public void setLoadDate(Date loadDate) {
       this.loadDate = loadDate;
    }
+
+
 }
