@@ -1,6 +1,7 @@
 package records.area.handelers;
 
 import dynamic.area.*;
+import dynamic.area.head.Order;
 import dynamic.area.head.ProductStock;
 
 public class Tokenizer {
@@ -43,21 +44,42 @@ public class Tokenizer {
         return appendLabel(makePlain(p), label);
     }
 
-    public static String makePlain(ProductStock ps) {
+    public static String makePlain(ProductStock ps , String label) {
         StringBuilder sb = new StringBuilder();
-        sb.append('<' + makePlain(ps.getProduct()) + '>' + ' ');
-        sb.append(toField(ps.getPartPlace(), "partPlace") + ' ');
+        sb.append('<').append(makePlain(ps.getProduct())).append('>').append(' ');
+        sb.append(toField(ps.getPartPlace(), "partPlace")).append(' ');
 
         sb.append("{ ");
-        for (Pack p : ps)
-        {   sb.append(makePlain(p));
+        for (Pack p : ps) {
+            sb.append(makePlain(p));
             sb.append(' ');
         }
         sb.append('}');
 
-        return sb.toString();
+        return appendLabel(label, sb.toString());
+    }
+    public static String makePlain(ProductStock ps) {return makePlain(ps , "PSToken");}
+
+
+    public static String makePlain(Order order , String label) {
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(toField(order.getClient(), "client")).append(' ');
+        sb.append(toField(order.getOrderingDate().toString(), "orderDate")).append(' ');
+        sb.append(toField(Double.toString(order.getDiscount()), "discount")).append(' ');
+
+        sb.append("{ ");
+        for (Pack p : order) {
+            sb.append(makePlain(p));
+            sb.append(' ');
+        }
+        sb.append('}');
+
+        return appendLabel(label,sb.toString());
     }
 
+    public static String makePlain(Order order ) {return makePlain(order,"OToken");}
 
 }
 

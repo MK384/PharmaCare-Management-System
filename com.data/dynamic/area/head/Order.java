@@ -5,7 +5,7 @@ import dynamic.area.Product;
 import java.util.Date;
 import java.util.Iterator;
 
-public interface Order {
+public interface Order extends Iterable<Pack> {
 
     void setClient( String client );
 
