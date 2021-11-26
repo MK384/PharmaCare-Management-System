@@ -1,7 +1,8 @@
-package DynamicArea.Head.Interfaces;
+package dynamic.area.head;
 
-import DynamicArea.Pack;
-import DynamicArea.Product;
+import dynamic.area.Pack;
+import dynamic.area.Product;
+
 import java.util.List;
 
 /**

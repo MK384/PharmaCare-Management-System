@@ -1,4 +1,4 @@
-package DynamicArea;
+package dynamic.area;
 import java.util.Date;
 
 

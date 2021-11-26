@@ -1,4 +1,4 @@
-package DynamicArea;
+package dynamic.area;
 
 public class MedicalEquipment extends Product{
     private String size;

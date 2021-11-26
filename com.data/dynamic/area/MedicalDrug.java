@@ -1,19 +1,19 @@
-package DynamicArea;
+package dynamic.area;
 
-public class Cosmetics extends Product{
-        private String type;
+public class MedicalDrug extends Product{
+    private String category;
 
-    public String getType() {
-        return type;
+    public String getCategory() {
+        return category;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override
     public void setName(String name) {
-        this.name = name;
+            this.name = name;
     }
 
     @Override

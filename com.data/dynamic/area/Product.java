@@ -1,4 +1,4 @@
-package DynamicArea;
+package dynamic.area;
 
 
 public abstract class Product {
