@@ -11,8 +11,8 @@ public class Pack {
 
 
    private Product product;
-   private Integer quantity;
-   private Integer price;
+   private int quantity;
+   private int price;
    private String provider;
    private Date expDate;
    private Date loadDate;
@@ -26,19 +26,19 @@ public class Pack {
       this.product = product;
    }
 
-   public Integer getQuantity() {
+   public int getQuantity() {
       return quantity;
    }
 
-   public void setQuantity(Integer quantity) {
+   public void setQuantity(int quantity) {
       this.quantity = quantity;
    }
 
-   public Integer getPrice() {
+   public int getPrice() {
       return price;
    }
 
-   public void setPrice(Integer price) {
+   public void setPrice(int price) {
       this.price = price;
    }
 

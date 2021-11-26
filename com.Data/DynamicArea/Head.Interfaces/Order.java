@@ -1,4 +1,6 @@
 package DynamicArea.Head.Interfaces;
+import DynamicArea.Pack;
+import DynamicArea.Product;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -8,7 +10,7 @@ public interface Order {
     String getClient();
     void setOrderingDate();
     Date getOrderingDate();
-    void addItem( Product product, int quantity );
+    void addItem(Product product, int quantity );
     void addItem( Pack pack );
     void makeDiscount( double discountFactor );
     double getDiscount();
