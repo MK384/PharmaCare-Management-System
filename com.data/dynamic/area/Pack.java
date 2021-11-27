@@ -17,6 +17,11 @@ public class Pack {
    private Date expDate;
    private Date loadDate;
 
+   public Pack (Product product , int quantity){
+      this.product = product;
+      this.quantity = quantity;
+   }
+   public Pack(){}
 
    public Product getProduct() {
       return product;

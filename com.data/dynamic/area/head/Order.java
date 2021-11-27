@@ -7,11 +7,12 @@ import java.util.Iterator;
 
 public interface Order extends Iterable<Pack> {
 
+
     void setClient( String client );
 
     String getClient();
 
-    void setOrderingDate();
+    void setOrderingDate(Date orderingDate);
 
     Date getOrderingDate();
 
