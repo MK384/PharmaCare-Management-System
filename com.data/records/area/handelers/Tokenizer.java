@@ -31,12 +31,12 @@ public class Tokenizer {
     // plain without label
     public static String makePlain(Pack p) {
 
-        return '<' + makePlain(p.getProduct()) + '>' +
+        return ('<' + makePlain(p.getProduct()) + '>' +
                 ' ' + toField(Integer.toString(p.getQuantity()), "quantity") +
                 ' ' + toField(p.getExpDate().toString(), "expDate") +
                 ' ' + toField(p.getLoadDate().toString(), "loadDate") +
                 ' ' + toField(p.getProvider(), "provider") +
-                ' ' + toField(Double.toString(p.getPrice()), "price");
+                ' ' + toField(Double.toString(p.getPrice()), "price"));
     }
 
     // plain with label appended
@@ -44,7 +44,8 @@ public class Tokenizer {
         return appendLabel(makePlain(p), label);
     }
 
-    public static String makePlain(ProductStock ps , String label) {
+    public static String makePlain(ProductStock ps, String label) {
+
         StringBuilder sb = new StringBuilder();
         sb.append('<').append(makePlain(ps.getProduct())).append('>').append(' ');
         sb.append(toField(ps.getPartPlace(), "partPlace")).append(' ');
@@ -58,10 +59,13 @@ public class Tokenizer {
 
         return appendLabel(label, sb.toString());
     }
-    public static String makePlain(ProductStock ps) {return makePlain(ps , "PSToken");}
+
+    public static String makePlain(ProductStock ps) {
+        return makePlain(ps, "PSToken");
+    }
 
 
-    public static String makePlain(Order order , String label) {
+    public static String makePlain(Order order, String label) {
 
         StringBuilder sb = new StringBuilder();
 
@@ -76,10 +80,12 @@ public class Tokenizer {
         }
         sb.append('}');
 
-        return appendLabel(label,sb.toString());
+        return appendLabel(label, sb.toString());
     }
 
-    public static String makePlain(Order order ) {return makePlain(order,"OToken");}
+    public static String makePlain(Order order) {
+        return makePlain(order, "OToken");
+    }
 
 }
 

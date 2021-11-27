@@ -7,7 +7,7 @@ public class PackToken implements Token {
 
     private String label;
 
-    private String plain;
+    private final String plain;
 
     public PackToken(Pack pack, String label) {
 
@@ -17,8 +17,9 @@ public class PackToken implements Token {
     }
 
     public PackToken(Pack pack) {
-        this(pack, "null");
-    }
+        this.label = null;
+
+        plain = Tokenizer.makePlain(pack);    }
 
     public PackToken(String plain, String label) {
         this.label = label;
