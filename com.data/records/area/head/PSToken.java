@@ -1,30 +1,33 @@
 package records.area.head;
 
-import dynamic.area.head.Order;
+import dynamic.area.head.ProductStock;
 import records.area.handelers.Tokenizer;
 
-public class OrderToken implements Token {
+public class PSToken implements Token {
 
 
-    String label;
     String plain;
+    String label;
 
-    public OrderToken(String label, String plain) {
-        this.label = label;
+    public PSToken(String plain, String label) {
         this.plain = plain;
-    }
-
-    public OrderToken(Order order) {
-        plain = Tokenizer.makePlain(order, "null");
-        label = null;
-    }
-
-    public OrderToken(Order order, String label) {
         this.label = label;
-        plain = Tokenizer.makePlain(order, label);
     }
 
-    public OrderToken() {
+    public PSToken(ProductStock ps) {
+        plain = Tokenizer.makePlain(ps, "null");
+        label = null;
+
+    }
+
+    public PSToken(ProductStock ps, String label) {
+        plain = Tokenizer.makePlain(ps, label);
+        this.label = label;
+    }
+
+    public PSToken() {
+        label = null;
+        plain = null;
     }
 
     /**
@@ -32,7 +35,7 @@ public class OrderToken implements Token {
      */
     @Override
     public String getLabel() {
-        return this.label;
+        return label;
     }
 
     /**
@@ -43,7 +46,8 @@ public class OrderToken implements Token {
     @Override
     public void setLabel(String label) {
         this.label = label;
-        this.plain = Tokenizer.changeLabel(plain, label);
+        plain = Tokenizer.changeLabel(plain, label);
+
     }
 
     /**
@@ -54,5 +58,5 @@ public class OrderToken implements Token {
         return this.plain;
     }
 
-    public Order toOrder() {return Tokenizer.retrieveOrder(this.plain);}
+    public ProductStock toPS() {return Tokenizer.retrievePS(this.plain);}
 }

@@ -5,57 +5,48 @@ import records.area.handelers.Tokenizer;
 
 public class PackToken implements Token {
 
-    private String label;
 
     private final String plain;
 
     public PackToken(Pack pack, String label) {
 
-        this.label = label;
 
         plain = Tokenizer.makePlain(pack,label);
     }
 
     public PackToken(Pack pack) {
-        this.label = null;
 
-        plain = Tokenizer.makePlain(pack);    }
-
-    public PackToken(String plain, String label) {
-        this.label = label;
-        this.plain = plain;
-    }
+        plain = Tokenizer.makePlain(pack,true);    }
 
     public PackToken(String plain) {
-        this(plain , "null");
-    }
+        this.plain = plain;
 
-//---------------------------------------------//
+    }
+    //---------------------------------------------//
     /**
-     * @return String label of the token.
+     * not supported!!
      */
 
     @Override
     public String getLabel() {
-        return this.label;
+        return null;
     }
 
     /**
-     * set the label of the token
-     *
-     * @param label
+     * not supported!!
      */
     @Override
     public void setLabel(String label) {
-        this.label = label;
     }
 
     /**
      * @return String the plain form of the token.
      */
     @Override
-    public String toPlain() {
-        return plain;
+    public String toString() {
+        return this.plain;
     }
+
+    public Pack toPack() {return Tokenizer.retrievePack(this.plain);}
 
 }

@@ -20,7 +20,7 @@ public interface Order extends Iterable<Pack> {
 
     void addItem( Pack pack );
 
-    void makeDiscount( double discountFactor );
+    void setDiscount( double discountFactor );
 
     double getDiscount();
 

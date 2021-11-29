@@ -1,13 +1,11 @@
-1) PSToken :
+                                    1) PSToken
 
-#label# <[_@name] [_@id] [_@category]> [_@partPlace] {<PackPlain1> <PackPlain2> <PackPlain3> ..}
+#label# <[_@name][_@id][_@category]>[_@partPlace]{<PackPlain1>&<PackPlain2>&<PackPlain3>}
 
- 2) OToken :
+                                    2) OToken
 
- #label# [_@client] [_@orderDate] [_@discount] {<PackPlain1> <PackPlain2> <PackPlain3> ..}
+ #label# [_@client][_@orderDate][_@discount]{<PackPlain1>&<PackPlain2>&<PackPlain3>}
 
- 3) PackToken :
+                                    3) PackToken
 
- #label# <[_@name] [_@id] [_@category]> [_@quantity] [_@expDate] [_@loadDate] [_@provider] [_@price]
-
-//test
+ <[_@name][_@id][_@category]>[_@quantity][_@expDate][_@loadDate][_@provider][_@price]

@@ -22,6 +22,7 @@ public interface Token {
      *
      * @return String the plain form of the token.
      */
-    String toPlain();
+    @Override
+    String toString();
 
 }

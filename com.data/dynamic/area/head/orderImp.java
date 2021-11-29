@@ -66,7 +66,7 @@ public class orderImp implements Order{
     }
 
     @Override
-    public void makeDiscount(double discountFactor) {
+    public void setDiscount(double discountFactor) {
         this.discount = (double) discountFactor*(this.totalCost);
         this.totalCost-=this.discount;
     }

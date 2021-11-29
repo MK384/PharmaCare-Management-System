@@ -26,6 +26,8 @@ public interface ProductStock extends Iterable<Pack> {
 
     public String getPartPlace();
 
+    void setProduct(Product p);
+
     public void addPack(Pack pack);
 
     public void removePack(Pack pack);

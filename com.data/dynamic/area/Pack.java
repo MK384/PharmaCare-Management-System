@@ -12,7 +12,7 @@ public class Pack {
 
    private Product product;
    private int quantity;
-   private int price;
+   private double price;
    private String provider;
    private Date expDate;
    private Date loadDate;
@@ -21,7 +21,8 @@ public class Pack {
       this.product = product;
       this.quantity = quantity;
    }
-   public Pack(){}
+
+   public Pack(Product product) {this.product = product;}
 
    public Product getProduct() {
       return product;
@@ -39,11 +40,11 @@ public class Pack {
       this.quantity = quantity;
    }
 
-   public int getPrice() {
+   public double getPrice() {
       return price;
    }
 
-   public void setPrice(int price) {
+   public void setPrice(double price) {
       this.price = price;
    }
 
