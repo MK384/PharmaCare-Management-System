@@ -43,13 +43,8 @@ public class Tokenizer {
 
         String[] vars = Tokenizer.varsInFields(plain);
         String[] vals = Tokenizer.valsInFields(plain);
-        Product p = ProductFactory.generateProduct(vals[3], vars[3]);
 
-        assert p != null;
-        p.setName(vals[1]);
-        p.setID(Integer.parseInt(vals[2]));
-
-        return p;
+        return Tokenizer.ProductFactory.generateProduct(vals, vars);
     }
 
     public static Pack retrievePack(String plain) {
@@ -74,11 +69,25 @@ public class Tokenizer {
 
     public static ProductStock retrievePS (String plain){
 
+        ProductStock ps = null; // needs to be referenced with real concrete class !!!
+        String cursor = plain.substring(plain.indexOf('<')+1,plain.indexOf('>'));
 
-        //  Must have an implementation of ProductStock first !! //
+        String[] vals = Tokenizer.valsInFields(cursor);
+        String[] vars = Tokenizer.varsInFields(cursor);
 
+        ps.setProduct(Tokenizer.ProductFactory.generateProduct(vals,vars));
 
-        return null;
+        vals = Tokenizer.valsInFields(plain.substring(plain.indexOf('>')+1,plain.indexOf('{')));
+        ps.setPartPlace(vals[1]);
+
+        cursor = plain.substring(plain.indexOf('{'));
+        String[] packs = Tokenizer.packsInFields(cursor);
+
+        for (String s: packs
+             ) {
+            ps.addPack(Tokenizer.retrievePack(s));
+        }
+        return ps;
     }
 
     public static Order retrieveOrder (String plain){
@@ -124,7 +133,6 @@ public class Tokenizer {
                         + toField(p.getLoadDate().toLocaleString(), "loadDate")
                         + toField(p.getProvider(), "provider")
                         + toField(Double.toString(p.getPrice()), "price"));
-
     }
 
     // plain with label appended
@@ -173,34 +181,38 @@ public class Tokenizer {
 
     public static String changeLabel(String plain , String newLabel)
     {
-        return Tokenizer.appendLabel(newLabel,plain.substring(plain.indexOf('#',plain.indexOf('#')+1)));
+        return Tokenizer.appendLabel(newLabel,plain.substring(plain.indexOf('#',plain.indexOf('#')+1)+1));
     }
 
     private static class ProductFactory {
 
-        static Product generateProduct(String val, String var) {
+        static Product generateProduct(String[] vals, String[] vars) {
 
             Product p;
 
-            switch (var) {
+            switch (vars[3]) {
                 case "size": {
                     p = new MedicalEquipment();
-                    ((MedicalEquipment) p).setSize(val);
+                    ((MedicalEquipment) p).setSize(vals[3]);
                     break;
                 }
                 case "category": {
                     p = new MedicalDrug();
-                    ((MedicalDrug) p).setCategory(val);
+                    ((MedicalDrug) p).setCategory(vals[3]);
                     break;
                 }
                 case "type": {
                     p = new Cosmetics();
-                    ((Cosmetics) p).setType(val);
+                    ((Cosmetics) p).setType(vals[3]);
                     break;
                 }
                 default:
                     return null;
             }
+
+            if (vars[1].equals("name")) p.setName(vals[1]);
+            if (vars[2].equals("id")) p.setID(Integer.parseInt(vals[2]));
+
             return p;
         }
     }

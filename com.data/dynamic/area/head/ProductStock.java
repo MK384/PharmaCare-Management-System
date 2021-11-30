@@ -22,22 +22,24 @@ import java.util.List;
 public interface ProductStock extends Iterable<Pack> {
 
 
-    public Product getProduct();
+     Product getProduct();
 
-    public String getPartPlace();
+     String getPartPlace();
 
     void setProduct(Product p);
 
-    public void addPack(Pack pack);
+    void setPartPlace (String partPlace);
 
-    public void removePack(Pack pack);
+     void addPack(Pack pack);
 
-    public boolean isEmpty();
+     void removePack(Pack pack);
 
-    public int size();
+     boolean isEmpty();
 
-    public int totalQuantity();
+     int size();
 
-    public List<Pack> extract(int q);
+     int totalQuantity();
+
+     List<Pack> extract(int q);
 
 }
