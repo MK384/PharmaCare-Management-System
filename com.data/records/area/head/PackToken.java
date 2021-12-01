@@ -8,16 +8,6 @@ public class PackToken implements Token {
 
     private final String plain;
 
-    public PackToken(Pack pack, String label) {
-
-
-        plain = Tokenizer.makePlain(pack,label);
-    }
-
-    public PackToken(Pack pack) {
-
-        plain = Tokenizer.makePlain(pack,true);    }
-
     public PackToken(String plain) {
         this.plain = plain;
 
@@ -47,6 +37,5 @@ public class PackToken implements Token {
         return this.plain;
     }
 
-    public Pack toPack() {return Tokenizer.retrievePack(this.plain);}
 
 }

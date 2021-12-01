@@ -39,7 +39,7 @@ public class Tokenizer {
         return packsPlain.split("&");
     }
 
-    public static Product retrieveProduct(String plain) {
+    private static Product retrieveProduct(String plain) {
 
         String[] vars = Tokenizer.varsInFields(plain);
         String[] vals = Tokenizer.valsInFields(plain);
@@ -133,11 +133,6 @@ public class Tokenizer {
                         + toField(p.getLoadDate().toLocaleString(), "loadDate")
                         + toField(p.getProvider(), "provider")
                         + toField(Double.toString(p.getPrice()), "price"));
-    }
-
-    // plain with label appended
-    public static String makePlain(Pack p, String label) {
-        return appendLabel(makePlain(p, true), label);
     }
 
     public static String makePlain(ProductStock ps, String label) {

@@ -1,5 +1,6 @@
 package records.area.head;
 
+import dto.TokenDTO;
 import dynamic.area.head.ProductStock;
 import records.area.handelers.Tokenizer;
 
@@ -14,15 +15,9 @@ public class PSToken implements Token {
         this.label = label;
     }
 
-    public PSToken(ProductStock ps) {
-        plain = Tokenizer.makePlain(ps, "null");
-        label = null;
-
-    }
-
-    public PSToken(ProductStock ps, String label) {
-        plain = Tokenizer.makePlain(ps, label);
-        this.label = label;
+    public PSToken(String plain) {
+        this.plain = plain;
+        this.label = null;
     }
 
     public PSToken() {
@@ -40,14 +35,12 @@ public class PSToken implements Token {
 
     /**
      * set the label of the token
-     *
      * @param label
      */
     @Override
     public void setLabel(String label) {
         this.label = label;
         plain = Tokenizer.changeLabel(plain, label);
-
     }
 
     /**
@@ -58,5 +51,4 @@ public class PSToken implements Token {
         return this.plain;
     }
 
-    public ProductStock toPS() {return Tokenizer.retrievePS(this.plain);}
 }
