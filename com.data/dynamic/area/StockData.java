@@ -11,7 +11,7 @@ public class StockData implements Iterable<ProductStock> {
    private   List <Order> purchasesList = new ArrayList<>();
    private Product product;
 
-   public StockData (Map stockList, List salesList, List purchasesList){
+   public StockData (Map<Product,ProductStock> stockList, List salesList, List purchasesList){
       this.stockList = stockList;
       this.salesList = salesList;
       this.purchasesList = purchasesList;
