@@ -6,28 +6,37 @@ import dynamic.area.head.ProductStock;
 import java.util.*;
 
 public class StockData implements Iterable<ProductStock> {
-   private Map <Product, ProductStock> stockList  = new HashMap<>();
-   private List <Order> salesList = new ArrayList<>();
-   private   List <Order> purchasesList = new ArrayList<>();
-   private Product product;
+   private Map <Product, ProductStock> stockList;
+   private List <Order> salesList;
+   private   List <Order> purchasesList;
 
-   public StockData (Map<Product,ProductStock> stockList, List salesList, List purchasesList){
+
+   public StockData (Map<Product,ProductStock> stockList, List<Order> salesList, List<Order> purchasesList){
       this.stockList = stockList;
       this.salesList = salesList;
       this.purchasesList = purchasesList;
    }
+
+   public StockData() {
+      this.stockList = new HashMap<>();
+      this.purchasesList = new ArrayList<>();
+      this.salesList = new ArrayList<>();
+
+   }
+
    public ProductStock search(Product product){
       return stockList.get(product);
    }
+
    public Boolean addPS(ProductStock productStock){
       stockList.put(productStock.getProduct(), productStock);
       return true;
    }
-   public Boolean addOrder(Order order){
+   public Boolean addSaleOrder(Order order){
       salesList.add(order);
       return true;
    }
-   public Boolean purchaseOrder(Order order){
+   public Boolean addPurchaseOrder(Order order){
       purchasesList.add(order);
       return true;
    }
