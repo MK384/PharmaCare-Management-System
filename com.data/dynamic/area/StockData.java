@@ -5,8 +5,8 @@ import dynamic.area.head.ProductStock;
 
 import java.util.*;
 
-public class StockData {
-   private Map <Product, ProductStock> stockList  = new TreeMap<>();
+public class StockData implements Iterable<ProductStock> {
+   private Map <Product, ProductStock> stockList  = new HashMap<>();
    private List <Order> salesList = new ArrayList<>();
    private   List <Order> purchasesList = new ArrayList<>();
    private Product product;
@@ -38,10 +38,7 @@ public class StockData {
       return purchasesList;
    }
 
-   Iterator<Map.Entry<Product, ProductStock>> iterator(){
-      Iterator<Map.Entry<Product, ProductStock>> stockIterator = stockList.entrySet().iterator();
-      return stockIterator;
-   }
+   public Iterator<ProductStock> iterator(){ return stockList.values().iterator();}
 
    public Map<Product, ProductStock> getStockList() {
       return stockList;
