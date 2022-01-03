@@ -4,8 +4,20 @@ package dynamic.area;
 import java.util.Objects;
 
 public abstract class Product {
+
     protected String name;
     protected int ID;
+    protected int price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+
     public abstract void setName(String name);
     public abstract String getName();
     public abstract void setID(int id);
