@@ -1,5 +1,6 @@
 package records.area.stockroom;
 
+import dynamic.area.Pack;
 import dynamic.area.Product;
 import dynamic.area.head.ProductStock;
 import records.area.handelers.StockFilesManager;
@@ -12,16 +13,13 @@ import java.util.Map;
 
 public class StockRecords {
 
+
     private static List<File> stockFiles;
-    private static FilesManager fileManager;
+    private final FilesManager fileManager;
 
     public StockRecords(String stockPath) {
         fileManager = new StockFilesManager(stockPath);
         stockFiles = fileManager.getAllFiles();
-    }
-
-    public StockRecords() {
-        this("C:\\Users\\moham\\Documents");
     }
 
     public StockFile storePS(ProductStock ps) throws IOException {
@@ -38,23 +36,14 @@ public class StockRecords {
         return new StockFile(ps.getProduct(), file);
     }
 
-    public Map<Product, ProductStock> retrieve() throws IOException, ClassNotFoundException {
-
-        FileInputStream fileInputStream;
-        ObjectInputStream input;
-        Map<Product, ProductStock> stock = new HashMap<>();
-        for (File f : stockFiles) {
-            fileInputStream = new FileInputStream(f);
-            input = new ObjectInputStream(fileInputStream);
-
-            ProductStock ps = (ProductStock) input.readObject();
-            stock.put(ps.getProduct(), ps);
-
-            fileInputStream.close();
-            input.close();
-
+    public Map<Product, ProductStock> retrieveAll() throws IOException, ClassNotFoundException {
+        Map<Product, ProductStock> map = new HashMap<>();
+        for (File f : stockFiles
+        ) {
+            ProductStock ps = retrieve(f);
+            map.put(ps.getProduct(), ps);
         }
-        return stock;
+        return map;
     }
 
     public StockFile update(ProductStock ps) throws IOException {
@@ -72,4 +61,27 @@ public class StockRecords {
 
         return new StockFile(ps.getProduct(), file);
     }
+
+    public StockFile update(Pack p) throws IOException, ClassNotFoundException {
+
+        if (p == null)
+            return null;
+        ProductStock ps = retrieve(p.getProduct());
+        ps.addPack(p);
+        return update(ps);
+    }
+
+    public ProductStock retrieve(File f) throws IOException, ClassNotFoundException {
+        if (!f.isFile())
+            return null;
+        return (ProductStock) new ObjectInputStream(new FileInputStream(f)).readObject();
+    }
+
+    public ProductStock retrieve(Product p) throws IOException, ClassNotFoundException {
+        if (p == null)
+            return null;
+        return retrieve(fileManager.search(p.toString()));
+    }
+
+
 }

@@ -92,12 +92,20 @@ public class orderImp implements Order {
         if (this == o) return true;
         if (!(o instanceof orderImp)) return false;
         orderImp packs = (orderImp) o;
-        return Double.compare(packs.discount, discount) == 0 && Objects.equals(itemsList, packs.itemsList) && client.equals(packs.client) && Objects.equals(orderingDate, packs.orderingDate);
+        return client.equals(packs.client) && Objects.equals(orderingDate, packs.orderingDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemsList, client, orderingDate, discount);
+        return Objects.hash(client, orderingDate);
+    }
+
+    @Override
+    public String toString() {
+        return "orderImp{" +
+                "client='" + client + '\'' +
+                ", orderingDate=" + orderingDate +
+                '}';
     }
 }
 

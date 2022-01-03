@@ -28,7 +28,7 @@ public class StockFilesManager implements FilesManager {
 
 
         for (String s: Objects.requireNonNull(mainDirectory.list()))
-            if (s.equals(fileName+".ser"))
+            if (s.contains(fileName))
                 return true;
         return false;
     }
