@@ -74,6 +74,14 @@ public class Pack implements Serializable {
       this.loadDate = loadDate;
    }
 
+   public boolean removeQuantity (int q){
+      if (this.quantity >= q){
+         this.quantity-=q;
+         return true;
+      }
+      else return false;
+   }
+
    @Override
    public boolean equals(Object o) {
       if (this == o) return true;

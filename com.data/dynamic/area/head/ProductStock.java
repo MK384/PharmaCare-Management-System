@@ -41,6 +41,6 @@ public interface ProductStock extends Iterable<Pack>, Serializable {
 
      int totalQuantity();
 
-     List<Pack> extract(int q);
+     Pack extract(int q);
 
 }
