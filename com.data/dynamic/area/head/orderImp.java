@@ -78,12 +78,16 @@ public class orderImp implements Order{
 
     @Override
     public Iterator<Pack> itemSet() {
-        return null;
+        return itemsList.iterator();
     }
 
     @Override
     public int itemsNum() {
-        return 0;
+     int total = 0;
+     for(Pack p: itemsList){
+         total += p.getQuantity();
+     }
+        return total;
     }
 
     @Override
