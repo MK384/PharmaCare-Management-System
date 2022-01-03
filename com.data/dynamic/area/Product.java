@@ -1,9 +1,10 @@
 package dynamic.area;
 
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public abstract class Product {
+public abstract class Product implements Serializable {
 
     protected String name;
     protected int ID;

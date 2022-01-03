@@ -1,6 +1,7 @@
 package dynamic.area;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 
 /**
@@ -73,5 +74,16 @@ public class Pack implements Serializable {
       this.loadDate = loadDate;
    }
 
+   @Override
+   public boolean equals(Object o) {
+      if (this == o) return true;
+      if (!(o instanceof Pack)) return false;
+      Pack pack = (Pack) o;
+      return quantity == pack.quantity && Double.compare(pack.price, price) == 0 && product.equals(pack.product) && Objects.equals(provider, pack.provider) && Objects.equals(expDate, pack.expDate) && Objects.equals(loadDate, pack.loadDate);
+   }
 
+   @Override
+   public int hashCode() {
+      return Objects.hash(product, quantity, price, provider, expDate, loadDate);
+   }
 }
