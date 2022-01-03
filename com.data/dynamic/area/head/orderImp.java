@@ -23,6 +23,10 @@ public class orderImp implements Order{
 
 
     public double getTotalCost() {
+
+        for (Pack p : itemsList){
+            totalCost+=p.getPrice();
+        }
         return totalCost;
     }
 
