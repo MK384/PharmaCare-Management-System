@@ -3,16 +3,16 @@ package dynamic.area.head;
 import dynamic.area.Pack;
 import dynamic.area.Product;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
-public class ProductStockImp implements ProductStock,Comparable<Pack> {
+public class ProductStockImp implements ProductStock {
 
     List<Pack> packages = new ArrayList<>();
     String partPlace;
     Product product;
+
+
+
 
 
     public ProductStockImp(Pack p) {
@@ -95,14 +95,5 @@ public class ProductStockImp implements ProductStock,Comparable<Pack> {
 
     private Stack<Pack> orderPacks = new Stack<>();
 
-    @Override
-    public int compareTo(Pack o) {
-        for (Pack p : packages) {
-            if (p.getExpDate().compareTo(o.getExpDate()) > 0) {
-                orderPacks.push(p);
-            } else orderPacks.push(o);
 
-        }
-        return 0;
-    }
 }

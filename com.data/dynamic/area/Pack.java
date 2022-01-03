@@ -8,7 +8,7 @@ import java.util.Objects;
  * this interface type holds all the plain info about a package of product.
  */
 
-public class Pack implements Serializable {
+public class Pack implements Serializable , Comparable<Pack> {
 
 
 
@@ -94,4 +94,10 @@ public class Pack implements Serializable {
    public int hashCode() {
       return Objects.hash(product, quantity, price, provider, expDate, loadDate);
    }
-}
+
+   @Override
+   public int compareTo(Pack o) {
+      return  (this.getExpDate().compareTo(o.getExpDate()));
+   }
+   }
+
