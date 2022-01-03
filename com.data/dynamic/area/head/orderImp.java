@@ -23,11 +23,7 @@ public class orderImp implements Order{
 
 
     public double getTotalCost() {
-        int total = 0;
-        for (Pack p : itemsList){
-            total+=p.getPrice();
-        }
-        return total;
+        return totalCost;
     }
 
 
@@ -87,7 +83,11 @@ public class orderImp implements Order{
 
     @Override
     public int itemsNum() {
-        return itemsList.size();
+     int total = 0;
+     for(Pack p: itemsList){
+         total += p.getQuantity();
+     }
+        return total;
     }
 
     @Override
