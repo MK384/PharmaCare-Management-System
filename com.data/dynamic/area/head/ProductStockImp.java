@@ -3,10 +3,7 @@ package dynamic.area.head;
 import dynamic.area.Pack;
 import dynamic.area.Product;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class ProductStockImp implements ProductStock,Comparable<Pack> {
 
@@ -74,22 +71,27 @@ public class ProductStockImp implements ProductStock,Comparable<Pack> {
         return totalQ;
     }
 
-    @Override
-    public Pack extract(int q) {
-       Pack p = orderPacks.pop();
-       if (p.removeQuantity(q)){
-           return p;
-       }
-       else {
-          extract(q-p.getQuantity());
-       }
+    public List<Pack> extract(int q) {
+        List<Pack> returnList = new ArrayList<>();
+        Collections.sort(packages);
+        for (int i=0;i<packages.size();i++){
+            if (!packages.get(i).removeQuantity(q)){
+                returnList.add(packages.get(i));
+            }
+            else {
+                Pack rest = packages.get(i);
+                returnList.add(rest);
+                break;
+            }
 
-        return null;
+        }
+        return returnList;
+
     }
 
     @Override
     public Iterator<Pack> iterator() {
-        return null;
+        return packages.iterator();
     }
 
 
