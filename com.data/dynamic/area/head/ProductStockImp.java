@@ -10,7 +10,6 @@ import java.util.Stack;
 
 public class ProductStockImp implements ProductStock,Comparable<Pack> {
 
-    private Stack<Pack> orderPacks = new Stack<>();
     List<Pack> packages = new ArrayList<>();
     String partPlace;
     Product product;
@@ -94,7 +93,7 @@ public class ProductStockImp implements ProductStock,Comparable<Pack> {
     }
 
 
-
+    private Stack<Pack> orderPacks = new Stack<>();
 
     @Override
     public int compareTo(Pack o) {
