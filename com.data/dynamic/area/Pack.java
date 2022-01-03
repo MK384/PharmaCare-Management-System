@@ -1,4 +1,5 @@
 package dynamic.area;
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -6,7 +7,7 @@ import java.util.Date;
  * this interface type holds all the plain info about a package of product.
  */
 
-public class Pack {
+public class Pack implements Serializable {
 
 
 

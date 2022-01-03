@@ -2,10 +2,11 @@ package dynamic.area.head;
 import dynamic.area.Pack;
 import dynamic.area.Product;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Iterator;
 
-public interface Order extends Iterable<Pack> {
+public interface Order extends Iterable<Pack>, Serializable {
 
 
     void setClient( String client );

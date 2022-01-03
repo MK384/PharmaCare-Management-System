@@ -3,6 +3,7 @@ package dynamic.area.head;
 import dynamic.area.Pack;
 import dynamic.area.Product;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ import java.util.List;
  */
 
 
-public interface ProductStock extends Iterable<Pack> {
+public interface ProductStock extends Iterable<Pack>, Serializable {
 
 
      Product getProduct();
