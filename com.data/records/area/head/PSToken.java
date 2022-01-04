@@ -1,7 +1,5 @@
 package records.area.head;
 
-import dto.TokenDTO;
-import dynamic.area.head.ProductStock;
 import records.area.handelers.Tokenizer;
 
 public class PSToken implements Token {

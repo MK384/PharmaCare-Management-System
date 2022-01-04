@@ -5,20 +5,24 @@ import dynamic.area.Product;
 
 import java.util.*;
 
-public class ProductStockImp implements ProductStock,Comparable<Pack> {
+public class ProductStockImp implements ProductStock {
 
-    List<Pack> packages = new ArrayList<>();
+    List<Pack> packages;
     String partPlace;
     Product product;
 
 
     public ProductStockImp(Pack p) {
+        product = p.getProduct();
+        packages = new ArrayList<>();
         packages.add(p);
+        partPlace = "Not Found";
     }
 
     public ProductStockImp(Product p) {
-        Pack pack1 = new Pack(p);
-        packages.add(pack1);
+        product = p;
+        packages = new ArrayList<>();
+        partPlace = "Not Found";
     }
 
 
@@ -86,7 +90,11 @@ public class ProductStockImp implements ProductStock,Comparable<Pack> {
 
         }
         return returnList;
-
+    }
+    @Override
+    public Date getNearestExpDate(){
+        Collections.sort(packages);
+        return packages.get(packages.size()-1).getExpDate();
     }
 
     @Override
@@ -94,17 +102,4 @@ public class ProductStockImp implements ProductStock,Comparable<Pack> {
         return packages.iterator();
     }
 
-
-    private Stack<Pack> orderPacks = new Stack<>();
-
-    @Override
-    public int compareTo(Pack o) {
-        for (Pack p : packages) {
-            if (p.getExpDate().compareTo(o.getExpDate()) > 0) {
-                orderPacks.push(p);
-            } else orderPacks.push(o);
-
-        }
-        return 0;
-    }
 }

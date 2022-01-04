@@ -72,13 +72,12 @@ public class orderImp implements Order {
     }
 
     @Override
-    public Iterator<Pack> itemSet() {
-        return itemsList.iterator();
+    public List<Pack> getItemList() {
+        return itemsList;
     }
 
     @Override
     public int itemsNum() {
-
         return itemsList.size();
     }
 

@@ -4,6 +4,7 @@ import dynamic.area.Pack;
 import dynamic.area.Product;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,6 +41,8 @@ public interface ProductStock extends Iterable<Pack>, Serializable {
      int size();
 
      int totalQuantity();
+
+    public Date getNearestExpDate();
 
      List<Pack> extract(int q);
 

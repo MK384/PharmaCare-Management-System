@@ -5,6 +5,7 @@ import dynamic.area.Product;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 public interface Order extends Iterable<Pack>, Serializable {
 
@@ -25,7 +26,7 @@ public interface Order extends Iterable<Pack>, Serializable {
 
     double getDiscount();
 
-    Iterator<Pack> itemSet();
+     List<Pack> getItemList();
 
     int itemsNum();
 

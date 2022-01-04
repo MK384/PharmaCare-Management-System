@@ -17,15 +17,30 @@ public class StockData implements Iterable<ProductStock> {
       this.purchasesList = purchasesList;
    }
 
-   public StockData() {
-      this.stockList = new HashMap<>();
-      this.purchasesList = new ArrayList<>();
-      this.salesList = new ArrayList<>();
-
-   }
-
    public ProductStock search(Product product){
       return stockList.get(product);
+   }
+
+
+   public boolean isAvailable(Product product , int required){
+      if (!stockList.containsKey(product))
+         return false;
+
+      ProductStock ps = search(product);
+      return ps.totalQuantity()>=required;
+   }
+
+   public void update(Product p, Pack pack){
+      ProductStock ps = search(p);
+      ps.addPack(pack);
+      stockList.put(p,ps);
+   }
+
+   public List<Pack> extractQuantity(Product p , int quantity){
+      ProductStock ps = search(p);
+      List<Pack> packList = ps.extract(quantity);
+      stockList.put(p,ps);
+      return packList;
    }
 
    public Boolean addPS(ProductStock productStock){
@@ -48,10 +63,6 @@ public class StockData implements Iterable<ProductStock> {
    }
 
    public Iterator<ProductStock> iterator(){ return stockList.values().iterator();}
-
-   public Map<Product, ProductStock> getStockList() {
-      return stockList;
-   }
 
    public void setStockList(Map<Product, ProductStock> stockList) {
       this.stockList = stockList;
