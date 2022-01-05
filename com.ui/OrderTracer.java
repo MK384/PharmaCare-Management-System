@@ -2,6 +2,8 @@ import dynamic.area.Pack;
 import dynamic.area.head.ProductStock;
 import dynamic.area.head.orderImp;
 
+import java.util.List;
+
 public class OrderTracer {
 
     private final static int ORDER_DATE = "                                ".length();
@@ -35,5 +37,26 @@ public class OrderTracer {
         System.out.println("|"  + StockTracer.centerText(EXP_DATE_SPACE,p.getExpDate().toLocaleString().substring(0,11)) + "|");
 
     }
+    private static void traceOrderFooter() {
+        System.out.println("======================================================================================================================================");
+        System.out.println("");
 
-}
+    }
+    public static void traceEmptyOrderRoom() {
+        OrderTracer.traceOrderHeader();
+        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
+        OrderTracer.traceOrderFooter();
+    }
+    public static void traceOrderRoom(orderImp o) {
+        if (o.getItemList().isEmpty())
+            StockTracer.traceEmptyStockRoom();
+        else {
+            OrderTracer.traceOrderHeader();
+            for (Pack p : o.getItemList()) {
+                OrderTracer.tracePack(p);
+                System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+            }
+           OrderTracer.traceOrderFooter();
+        }
+
+}}
