@@ -2,7 +2,7 @@ import dynamic.area.Pack;
 import dynamic.area.head.ProductStock;
 import dynamic.area.head.orderImp;
 
-import java.util.Date;
+import java.util.List;
 
 public class OrderTracer {
 
@@ -30,11 +30,11 @@ public class OrderTracer {
         System.out.print("| Order Date : "+StockTracer.centerText(ORDER_DATE,o.getOrderingDate().toString())+"|");
         System.out.print("| Discount : "+StockTracer.centerText(DISCOUNT,String.valueOf(o.getDiscount()))+"|");
         System.out.println("| Items Num : "+StockTracer.centerText(ITEMS_NUM,String.valueOf(o.itemsNum()))+"|");
-        System.out.println("| TOTAL PAID CASH : "+StockTracer.centerText(TOTAL_CASH,String.valueOf(o.getTotalCost()))+"|");
+        System.out.print("| TOTAL PAID CASH : "+StockTracer.centerText(TOTAL_CASH,String.valueOf(o.getTotalCost()))+"|");
         System.out.println("========================================================{Details}=================================================================");
         System.out.println("|       Product Name     ||      Quantity      ||     Merchant Name     ||        Loading Date        ||        Expire Date      |");
         System.out.println("==================================================================================================================================");
-
+        System.out.println("======================================================================================================================================");
 
     }
     private static void tracePack(Pack p){
@@ -46,9 +46,30 @@ public class OrderTracer {
         System.out.println("|"  + StockTracer.centerText(EXP_DATE_SPACE,p.getExpDate().toLocaleString().substring(0,11)) + "|");
 
     }
+    private static void traceOrderFooter() {
+        System.out.println("======================================================================================================================================");
+        System.out.println("");
 
-    public static void main (String [] args){
-        OrderTracer.traceOrderHeader(new orderImp("Aya",new Date(12)));
     }
+    public static void traceEmptyOrderRoom() {
+        System.out.println("|       Product Name     ||      Quantity      ||     Merchant Name     ||        Loading Date        ||        Expire Date      |\n" +
+                "=====================================================================================================================");
+        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
+        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
+        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
+        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
+        OrderTracer.traceOrderFooter();
+    }
+    public static void traceOrderRoom(orderImp o) {
+        if (o.getItemList().isEmpty())
+            StockTracer.traceEmptyStockRoom();
+        else {
+            OrderTracer.traceOrderHeader(o);
+            for (Pack p : o.getItemList()) {
+                OrderTracer.tracePack(p);
+                System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+            }
+           OrderTracer.traceOrderFooter();
+        }
 
-}
+}}
