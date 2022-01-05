@@ -23,7 +23,15 @@ public class OrderTracer {
         System.out.println("");
         System.out.println("                                                           |[ Order Details ]|                                                            ");
         System.out.println("======================================================================================================================================");
-        System.out.println("|       Client Name     ||   Order Date   ||       Items Num        || Discount ||   Note   |");
+        System.out.println("=========================================================={Order}=================================================================");
+        System.out.print("| Client Name : "+StockTracer.centerText(CLIENT_NAME,o.getClient())+"|");
+        System.out.print("| Order Date : "+StockTracer.centerText(ORDER_DATE,o.getOrderingDate().toString())+"|");
+        System.out.print("| Discount : "+StockTracer.centerText(DISCOUNT,String.valueOf(o.getDiscount()))+"|");
+        System.out.println("| Items Num : "+StockTracer.centerText(ITEMS_NUM,String.valueOf(o.itemsNum()))+"|");
+        System.out.print("| TOTAL PAID CASH : "+StockTracer.centerText(TOTAL_CASH,String.valueOf(o.getTotalCost()))+"|");
+        System.out.println("========================================================{Details}=================================================================");
+        System.out.println("|       Product Name     ||      Quantity      ||     Merchant Name     ||        Loading Date        ||        Expire Date      |");
+        System.out.println("==================================================================================================================================");
         System.out.println("======================================================================================================================================");
 
     }
