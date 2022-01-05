@@ -36,6 +36,10 @@ public class StockTracer {
 
     }
 
+    public static void main(String[] args) {
+
+    }
+
 
     public static String centerText(int spaces, String text) {
         StringBuilder centeredText = new StringBuilder();
