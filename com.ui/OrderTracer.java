@@ -2,6 +2,8 @@ import dynamic.area.Pack;
 import dynamic.area.head.ProductStock;
 import dynamic.area.head.orderImp;
 
+import java.util.Date;
+
 public class OrderTracer {
 
     private final static int ORDER_DATE = "                                ".length();
@@ -28,11 +30,11 @@ public class OrderTracer {
         System.out.print("| Order Date : "+StockTracer.centerText(ORDER_DATE,o.getOrderingDate().toString())+"|");
         System.out.print("| Discount : "+StockTracer.centerText(DISCOUNT,String.valueOf(o.getDiscount()))+"|");
         System.out.println("| Items Num : "+StockTracer.centerText(ITEMS_NUM,String.valueOf(o.itemsNum()))+"|");
-        System.out.print("| TOTAL PAID CASH : "+StockTracer.centerText(TOTAL_CASH,String.valueOf(o.getTotalCost()))+"|");
+        System.out.println("| TOTAL PAID CASH : "+StockTracer.centerText(TOTAL_CASH,String.valueOf(o.getTotalCost()))+"|");
         System.out.println("========================================================{Details}=================================================================");
         System.out.println("|       Product Name     ||      Quantity      ||     Merchant Name     ||        Loading Date        ||        Expire Date      |");
         System.out.println("==================================================================================================================================");
-        System.out.println("======================================================================================================================================");
+
 
     }
     private static void tracePack(Pack p){
@@ -43,6 +45,10 @@ public class OrderTracer {
         System.out.println("|"  + StockTracer.centerText(LOAD_DATE_SPACE,p.getLoadDate().toLocaleString()) + "|");
         System.out.println("|"  + StockTracer.centerText(EXP_DATE_SPACE,p.getExpDate().toLocaleString().substring(0,11)) + "|");
 
+    }
+
+    public static void main (String [] args){
+        OrderTracer.traceOrderHeader(new orderImp("Aya",new Date(12)));
     }
 
 }
