@@ -18,13 +18,14 @@ public class OrderTracer {
 
 
 
-    private static void traceOrderHeader(){
+    private static void traceOrderHeader(orderImp o){
         System.out.println("");
         System.out.println("");
         System.out.println("                                                           |[ Order Details ]|                                                            ");
         System.out.println("======================================================================================================================================");
         System.out.println("|       Client Name     ||   Order Date   ||       Items Num        || Discount ||   Note   |");
         System.out.println("======================================================================================================================================");
+
     }
     private static void tracePack(Pack p){
 
