@@ -52,7 +52,11 @@ public class OrderTracer {
 
     }
     public static void traceEmptyOrderRoom() {
-        OrderTracer.traceOrderHeader();
+        System.out.println("|       Product Name     ||      Quantity      ||     Merchant Name     ||        Loading Date        ||        Expire Date      |\n" +
+                "=====================================================================================================================");
+        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
+        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
+        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
         System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
         OrderTracer.traceOrderFooter();
     }
@@ -60,7 +64,7 @@ public class OrderTracer {
         if (o.getItemList().isEmpty())
             StockTracer.traceEmptyStockRoom();
         else {
-            OrderTracer.traceOrderHeader();
+            OrderTracer.traceOrderHeader(o);
             for (Pack p : o.getItemList()) {
                 OrderTracer.tracePack(p);
                 System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
