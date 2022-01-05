@@ -1,3 +1,5 @@
+import dynamic.area.Pack;
+import dynamic.area.head.ProductStock;
 import dynamic.area.head.orderImp;
 
 public class OrderTracer {
@@ -16,24 +18,21 @@ public class OrderTracer {
 
 
 
-    private static void traceOrderHeader(orderImp o){
+    private static void traceOrderHeader(){
         System.out.println("");
         System.out.println("");
         System.out.println("                                                           |[ Order Details ]|                                                            ");
         System.out.println("======================================================================================================================================");
-        System.out.println("|                                                                                                                                |");
-        System.out.println("=========================================================={Order}=================================================================");
-        System.out.print("| Client Name :  "+StockTracer.centerText(CLIENT_NAME,o.getClient())+"|");
-        System.out.print("| Order Date :  "+StockTracer.centerText(ORDER_DATE,o.getOrderingDate().toLocaleString().substring(0,11))+"|");
-        System.out.print("| Discount :  "+StockTracer.centerText(DISCOUNT,String.valueOf(o.getDiscount()))+"|");
-
-
-    }
-
-
-    private static void traceOrderFooter() {
+        System.out.println("|       Client Name     ||   Order Date   ||       Items Num        || Discount ||   Note   |");
         System.out.println("======================================================================================================================================");
-        System.out.println("");
+    }
+    private static void tracePack(Pack p){
+
+        System.out.println("|" + StockTracer.centerText(PRODUCT_NAME_SPACE,p.getProduct().getName()) + "|");
+        System.out.println("|"+ StockTracer.centerText(QUANTITY_SPACE,String.valueOf(p.getQuantity())) + "|" );
+        System.out.println("|"  + StockTracer.centerText(PROVIDER_SPACE,p.getProvider()) + "|"  );
+        System.out.println("|"  + StockTracer.centerText(LOAD_DATE_SPACE,p.getLoadDate().toLocaleString()) + "|");
+        System.out.println("|"  + StockTracer.centerText(EXP_DATE_SPACE,p.getExpDate().toLocaleString().substring(0,11)) + "|");
 
     }
 
