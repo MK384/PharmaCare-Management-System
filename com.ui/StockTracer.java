@@ -53,7 +53,7 @@ public class StockTracer {
 
     public static void traceEmptyStockRoom() {
         StockTracer.traceStockRoomHeader();
-        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||        Empty        |");
+        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
         StockTracer.traceStockRoomFooter();
     }
 
@@ -62,13 +62,11 @@ public class StockTracer {
             StockTracer.traceEmptyStockRoom();
         else {
             StockTracer.traceStockRoomHeader();
-            for (int i = 0; i < list.size(); i++) {
-                StockTracer.tracePlainProduct(list.get(i));
+            for (ProductStock ps : list) {
+                StockTracer.tracePlainProduct(ps);
                 System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
             }
             StockTracer.traceStockRoomFooter();
         }
     }
-
-
 }
