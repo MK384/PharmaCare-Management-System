@@ -268,7 +268,7 @@ public class ScannerUI {
                     "|                         {Select Action To perform}                           |\n" +
                     "--------------------------------------------------------------------------------\n" +
                     "|  - Purchase Items [P]         - Sell Items [S]        - Search in Stock [C]  |\n" +
-                    "|  - Search Sells Transaction [T]          - Search Purchased Transaction [T]  |\n" +
+                    "|  - Search Sells Transaction [T]          - Search Purchased Transaction [D]  |\n" +
                     "|  - List whole Stock Room [L]                                    -  Exit [Q]  |\n" +
                     "--------------------------------------------------------------------------------\n" +
                     "|  Enter Selection  :           ");
