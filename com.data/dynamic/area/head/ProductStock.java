@@ -4,6 +4,7 @@ import dynamic.area.Pack;
 import dynamic.area.Product;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public interface ProductStock extends Iterable<Pack>, Serializable {
 
      int totalQuantity();
 
-    public Date getNearestExpDate();
+    public LocalDate getNearestExpDate();
 
      List<Pack> extract(int q);
 

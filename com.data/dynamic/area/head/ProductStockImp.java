@@ -3,6 +3,7 @@ package dynamic.area.head;
 import dynamic.area.Pack;
 import dynamic.area.Product;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class ProductStockImp implements ProductStock {
@@ -92,9 +93,9 @@ public class ProductStockImp implements ProductStock {
         return returnList;
     }
     @Override
-    public Date getNearestExpDate(){
+    public LocalDate getNearestExpDate(){
         Collections.sort(packages);
-        return packages.get(packages.size()-1).getExpDate();
+        return  packages.get(packages.size()-1).getExpDate();
     }
 
     @Override

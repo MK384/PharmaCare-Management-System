@@ -3,6 +3,7 @@ import dynamic.area.Pack;
 import dynamic.area.Product;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -14,9 +15,9 @@ public interface Order extends Iterable<Pack>, Serializable {
 
     String getClient();
 
-    void setOrderingDate(Date orderingDate);
+    void setOrderingDate(LocalDate orderingDate);
 
-    Date getOrderingDate();
+    LocalDate getOrderingDate();
 
     void addItem(Product product, int quantity );
 

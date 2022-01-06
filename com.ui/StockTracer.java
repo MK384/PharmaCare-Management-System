@@ -26,17 +26,13 @@ public class StockTracer {
         System.out.print("|" + centerText(TYPE_SPACE, p.getProduct().getClass().getSimpleName()) + "|");
         System.out.print("|" + centerText(QUANTITY_SPACE, String.valueOf(p.totalQuantity())) + "|");
         System.out.print("|" + centerText(PLACE_SPACE, p.getPartPlace()) + "|");
-        System.out.println("|" + centerText(DATE_SPACE, p.getNearestExpDate().toLocaleString().substring(0, 11)) + "|");
+        System.out.println("|" + centerText(DATE_SPACE, p.getNearestExpDate().toString()) + "|");
 
     }
 
     private static void traceStockRoomFooter() {
         System.out.println("======================================================================================================================================");
         System.out.println("");
-
-    }
-
-    public static void main(String[] args) {
 
     }
 

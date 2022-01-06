@@ -3,17 +3,18 @@ package dynamic.area.head;
 import dynamic.area.Pack;
 import dynamic.area.Product;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class orderImp implements Order {
 
     List<Pack> itemsList = new ArrayList<>();
     String client;
-    Date orderingDate;
+    LocalDate orderingDate;
     double discount = 0.0;
 
 
-    public orderImp(String client, Date orderingDate) {
+    public orderImp(String client, LocalDate orderingDate) {
         this.client = client;
         this.orderingDate = orderingDate;
     }
@@ -41,12 +42,12 @@ public class orderImp implements Order {
     }
 
     @Override
-    public Date getOrderingDate() {
+    public LocalDate getOrderingDate() {
         return orderingDate;
     }
 
     @Override
-    public void setOrderingDate(Date orderingDate) {
+    public void setOrderingDate(LocalDate orderingDate) {
         this.orderingDate = orderingDate;
     }
 

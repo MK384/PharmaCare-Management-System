@@ -1,5 +1,6 @@
 package dynamic.area;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,8 +17,8 @@ public class Pack implements Serializable , Comparable<Pack> {
    private int quantity;
    private double price;
    private String provider;
-   private Date expDate;
-   private Date loadDate;
+   private LocalDate expDate;
+   private LocalDate loadDate;
 
    public Pack (Product product , int quantity){
       this.product = product;
@@ -58,19 +59,19 @@ public class Pack implements Serializable , Comparable<Pack> {
       this.provider = provider;
    }
 
-   public Date getExpDate() {
+   public LocalDate getExpDate() {
       return expDate;
    }
 
-   public void setExpDate(Date expDate) {
+   public void setExpDate(LocalDate expDate) {
       this.expDate = expDate;
    }
 
-   public Date getLoadDate() {
+   public LocalDate getLoadDate() {
       return loadDate;
    }
 
-   public void setLoadDate(Date loadDate) {
+   public void setLoadDate(LocalDate loadDate) {
       this.loadDate = loadDate;
    }
 
