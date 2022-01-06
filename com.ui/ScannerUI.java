@@ -243,7 +243,7 @@ public class ScannerUI {
 
     public static void main(String[] args) {
         makePurchase();
-        makeSale();
+       // makeSale();
     }
 
 
