@@ -9,9 +9,8 @@ import records.area.base.RecordsDataBase;
 import records.area.head.DataBaseAccess;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 public class DataAccessObject implements DataManager {
 
@@ -60,11 +59,11 @@ public class DataAccessObject implements DataManager {
 
     @Override
     public List<ProductStock> retrieveAllStock() throws IOException, ClassNotFoundException {
-        return (List<ProductStock>) baseDAO.retrieveAllStock().values();
+        return new ArrayList<>(baseDAO.retrieveAllStock().values());
     }
 
     @Override
-    public List<Order> searchSales(Date date) throws IOException, ClassNotFoundException {
+    public List<Order> searchSales(LocalDate date) throws IOException, ClassNotFoundException {
         return baseDAO.searchSales(date);
     }
 
@@ -84,7 +83,7 @@ public class DataAccessObject implements DataManager {
     }
 
     @Override
-    public List<Order> searchPurchase(Date date) throws IOException, ClassNotFoundException {
+    public List<Order> searchPurchase(LocalDate date) throws IOException, ClassNotFoundException {
         return baseDAO.searchPurchases(date);
     }
 

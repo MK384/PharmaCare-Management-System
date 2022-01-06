@@ -6,6 +6,7 @@ import dynamic.area.head.Order;
 import dynamic.area.head.ProductStock;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -22,13 +23,13 @@ public interface DataManager {
 
     List<ProductStock> retrieveAllStock() throws IOException, ClassNotFoundException;
 
-    List<Order> searchSales(Date date) throws IOException, ClassNotFoundException;
+    List<Order> searchSales(LocalDate date) throws IOException, ClassNotFoundException;
 
     List<Order> searchSales(String client) throws IOException, ClassNotFoundException;
 
     List<Order> searchSales(Date date , String client) throws IOException, ClassNotFoundException;
 
-    List<Order> searchPurchase(Date date) throws IOException, ClassNotFoundException;
+    List<Order> searchPurchase(LocalDate date) throws IOException, ClassNotFoundException;
 
     List<Order> searchPurchase(String client) throws IOException, ClassNotFoundException;
 

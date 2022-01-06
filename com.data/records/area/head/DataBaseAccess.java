@@ -8,9 +8,8 @@ import dynamic.area.head.ProductStock;
 import records.area.stockroom.StockFile;
 import records.area.transactions.TransFile;
 
-import javax.xml.crypto.Data;
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -26,13 +25,13 @@ public interface DataBaseAccess {
 
     TransFile storeNewSale(Order o) throws IOException;
 
-    List<Order> searchSales(Date orderingDate) throws IOException, ClassNotFoundException;
+    List<Order> searchSales(LocalDate orderingDate) throws IOException, ClassNotFoundException;
 
     List<Order> searchSales(String clientName) throws IOException, ClassNotFoundException;
 
     TransFile storeNewPurchase (Order o) throws IOException;
 
-    List<Order> searchPurchases(Date orderingDate) throws IOException, ClassNotFoundException;
+    List<Order> searchPurchases(LocalDate orderingDate) throws IOException, ClassNotFoundException;
 
     List<Order> searchPurchases(String clientName) throws IOException, ClassNotFoundException;
 

@@ -1,13 +1,12 @@
 package records.area.transactions;
 
-import dynamic.area.Pack;
 import dynamic.area.head.Order;
 import records.area.handelers.StockFilesManager;
 import records.area.head.FilesManager;
 import records.area.head.TransactionsRecords;
 
 import java.io.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,7 +48,7 @@ public class TransactionRecords implements TransactionsRecords {
     }
 
     @Override
-    public List<Order> retrieve(Date date) throws IOException, ClassNotFoundException {
+    public List<Order> retrieve(LocalDate date) throws IOException, ClassNotFoundException {
         List<Order> transactionsList = retrieveAll();
         List<Order> orders = new LinkedList<>();
         for (Order o: transactionsList)

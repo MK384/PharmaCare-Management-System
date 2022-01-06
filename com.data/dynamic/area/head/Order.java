@@ -31,5 +31,6 @@ public interface Order extends Iterable<Pack>, Serializable {
 
     int itemsNum();
 
+     double getTotalCost();
 
 }

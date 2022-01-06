@@ -1,15 +1,14 @@
 import dynamic.area.Pack;
-import dynamic.area.head.ProductStock;
-import dynamic.area.head.orderImp;
+import dynamic.area.head.Order;
 
-import java.util.List;
+import java.time.LocalDate;
 
 public class OrderTracer {
 
     private final static int ORDER_DATE = "                                ".length();
-    private final static int DISCOUNT = "                         ".length();
+    private final static int DISCOUNT = "                       ".length();
     private final static int ITEMS_NUM = "                                     ".length();
-    private final static int TOTAL_CASH = "                                                           ".length();
+    private final static int TOTAL_CASH = "                                                         ".length();
     private final static int CLIENT_NAME = "                            ".length();
 
     private final static int PRODUCT_NAME_SPACE = "       Product Name     ".length();
@@ -20,16 +19,17 @@ public class OrderTracer {
 
 
 
-    private static void traceOrderHeader(orderImp o){
+    private static void traceOrderHeader(Order o){
         System.out.println("");
         System.out.println("");
-        System.out.println("                                                           |[ Order Details ]|                                                            ");
-        System.out.println("======================================================================================================================================");
-        System.out.println("=========================================================={Order}=================================================================");
+        System.out.println("                                                           |[ Order Details ]|");
+        System.out.println("==================================================================================================================================");
+        System.out.println("|                                                                                                                                |\n" +
+                "=========================================================={Order}=================================================================");
         System.out.print("| Client Name : "+StockTracer.centerText(CLIENT_NAME,o.getClient())+"|");
         System.out.print("| Order Date : "+StockTracer.centerText(ORDER_DATE,o.getOrderingDate().toString())+"|");
-        System.out.print("| Discount : "+StockTracer.centerText(DISCOUNT,String.valueOf(o.getDiscount()))+"|");
-        System.out.println("| Items Num : "+StockTracer.centerText(ITEMS_NUM,String.valueOf(o.itemsNum()))+"|");
+        System.out.println("| Discount : "+StockTracer.centerText(DISCOUNT,String.valueOf(o.getDiscount()))+"|");
+        System.out.print("| Items Num : "+StockTracer.centerText(ITEMS_NUM,String.valueOf(o.itemsNum()))+"|");
         System.out.println("| TOTAL PAID CASH : "+StockTracer.centerText(TOTAL_CASH,String.valueOf(o.getTotalCost()))+"|");
         System.out.println("========================================================{Details}=================================================================");
         System.out.println("|       Product Name     ||      Quantity      ||     Merchant Name     ||        Loading Date        ||        Expire Date      |");
@@ -39,30 +39,35 @@ public class OrderTracer {
     }
     private static void tracePack(Pack p){
 
-        System.out.println("|" + StockTracer.centerText(PRODUCT_NAME_SPACE,p.getProduct().getName()) + "|");
-        System.out.println("|"+ StockTracer.centerText(QUANTITY_SPACE,String.valueOf(p.getQuantity())) + "|" );
-        System.out.println("|"  + StockTracer.centerText(PROVIDER_SPACE,p.getProvider()) + "|"  );
-        System.out.println("|"  + StockTracer.centerText(LOAD_DATE_SPACE,p.getLoadDate().toString()) + "|");
-        System.out.println("|"  + StockTracer.centerText(EXP_DATE_SPACE,p.getExpDate().toString()) + "|");
+        System.out.print("|" + StockTracer.centerText(PRODUCT_NAME_SPACE,p.getProduct().getName()) + "|");
+        System.out.print("|"+ StockTracer.centerText(QUANTITY_SPACE,String.valueOf(p.getQuantity())) + "|" );
+        System.out.print("|"  + StockTracer.centerText(PROVIDER_SPACE,p.getProvider()) + "|"  );
+        System.out.print("|"  + StockTracer.centerText(LOAD_DATE_SPACE,p.getLoadDate().toString()) + "|");
+        System.out.print("|"  + StockTracer.centerText(EXP_DATE_SPACE,p.getExpDate().toString()) + "|");
 
     }
     private static void traceOrderFooter() {
-        System.out.println("======================================================================================================================================");
+        System.out.println("==================================================================================================================================");
         System.out.println("");
 
     }
-    public static void traceEmptyOrderRoom() {
-        System.out.println("|       Product Name     ||      Quantity      ||     Merchant Name     ||        Loading Date        ||        Expire Date      |\n" +
-                "=====================================================================================================================");
-        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
-        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
-        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
-        System.out.println("|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||          Empty          |");
-        OrderTracer.traceOrderFooter();
+    public static void traceEmptyOrder(LocalDate orderDate , String client) {
+        System.out.println("\n" +
+                "                                                         |[ Order Details ]|\n" +
+                "==================================================================================================================================\n" +
+                "|                                                                                                                                |\n" +
+                "============================================================={Order}==============================================================\n" +
+                "| Client Name :  "+ StockTracer.centerText("        empty field      ".length(),client) +"  || Order Date :            "+ orderDate.toString() +"           || Discount :           0.0          |\n" +
+                "| Items Num :                   0                  || TOTAL PAID CASH :                            0.0                           |\n" +
+                "========================================================{Details}=================================================================\n" +
+                "|       Product Name     ||      Quantity      ||     Merchant Name     ||        Loading Date        ||        Expire Date      |\n" +
+                "==================================================================================================================================\n" +
+                "|          Empty         ||      Empty      ||       Empty       ||        Empty       ||      Empty      ||         Empty       |\n" +
+                "==================================================================================================================================");
     }
-    public static void traceOrderRoom(orderImp o) {
+    public static void traceOrder(Order o) {
         if (o.getItemList().isEmpty())
-            StockTracer.traceEmptyStockRoom();
+            traceEmptyOrder(o.getOrderingDate(),o.getClient());
         else {
             OrderTracer.traceOrderHeader(o);
             for (Pack p : o.getItemList()) {
@@ -72,4 +77,23 @@ public class OrderTracer {
            OrderTracer.traceOrderFooter();
         }
 
-}}
+}
+    public static void orderNotCompletePanel()
+    {
+        System.out.println("");
+        System.out.println("===================================================================\n" +
+                "|       Order Cannot complete due to insufficient supplies        |\n" +
+                "===================================================================");
+    }
+
+    public static void orderDonePanel()
+    {
+        System.out.println("");
+        System.out.println("===================================================================\n" +
+                "|                  Order Completed Successfully                   |\n" +
+                "===================================================================");
+    }
+
+
+
+}

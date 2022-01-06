@@ -1,9 +1,8 @@
 import dynamic.area.Pack;
 import dynamic.area.Product;
 import dynamic.area.head.Order;
-import dynamic.area.head.orderImp;
+import dynamic.area.head.OrderImp;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -98,9 +97,9 @@ public class ScannerUI {
             LocalDate expDate = LocalDate.parse(input.nextLine(), myFormatter);
 
             System.out.print("================================================================================\n" +
-                    "|                                                                              |\n" +
                     "| Another Product [Y: Yes | N: No]    :         ");
             char action = input.nextLine().charAt(0);
+            System.out.println("--------------------------------------------------------------------------------");
 
             Product p = ProductFactory.generateProduct(type);
             assert p != null;
@@ -162,9 +161,10 @@ public class ScannerUI {
             System.out.println("--------------------------------------------------------------------------------");
 
             System.out.print("================================================================================\n" +
-                    "|                                                                              |\n" +
                     "| Another Product [Y: Yes | N: No]    :         ");
             char action = input.nextLine().charAt(0);
+            System.out.println("--------------------------------------------------------------------------------");
+
 
             Product p = ProductFactory.generateProduct(type);
             assert p != null;
@@ -204,11 +204,12 @@ public class ScannerUI {
     }
 
     private static char invalidEntries() {
-        System.out.print("================================================================================\n" +
-                "|                             [  Invalid Entries  ]                            |\n" +
-                "|          Try Again [Y: Yes | N: No]  :        ");
+        System.out.println("");
+        System.out.print("                             [  Invalid Entries  ]\n" +
+                "================================================================================\n" +
+                "|          Try Again [Y: Yes | N: No]  :      ");
         char answer = input.nextLine().charAt(0);
-        System.out.println("================================================================================");
+        System.out.println("--------------------------------------------------------------------------------");
         return answer;
     }
 
@@ -218,7 +219,7 @@ public class ScannerUI {
 
         String merchant = scanPurchaseHeader();
         List<Pack> packList = scanPurchasedProducts(1);
-        Order order = new orderImp(merchant,LocalDate.now());
+        Order order = new OrderImp(merchant,LocalDate.now());
 
         for (Pack pack: packList)
             order.addItem(pack);
@@ -231,7 +232,7 @@ public class ScannerUI {
 
         String client = scanSaleHeader();
         List<Pack> packList = scanSoldProducts(1);
-        Order order = new orderImp(client,LocalDate.now());
+        Order order = new OrderImp(client,LocalDate.now());
 
         for (Pack pack: packList)
             order.addItem(pack);
@@ -240,11 +241,82 @@ public class ScannerUI {
 
     }
 
+    public static Product searchInStock(){
 
-    public static void main(String[] args) {
-        makePurchase();
-       // makeSale();
+        Product p = new Product();
+        System.out.print("================================================================================\n" +
+                "|  Enter Product Name or ID :       ");
+        String id_name = input.nextLine();
+        try {
+
+            p.setID(Integer.parseInt(id_name));
+        }
+        catch (Exception e)
+        {
+            p.setName(id_name);
+        }
+        System.out.println("--------------------------------------------------------------------------------");
+        return p;
     }
+
+    public static char inventoryPanel(){
+        char choice = 'n';
+        try {
+            System.out.print("================================================================================\n" +
+                    "|                           |[ INVENTORY PANEL ]|                              |\n" +
+                    "--------------------------------------------------------------------------------\n" +
+                    "|                         {Select Action To perform}                           |\n" +
+                    "--------------------------------------------------------------------------------\n" +
+                    "|  - Purchase Items [P]         - Sell Items [S]        - Search in Stock [C]  |\n" +
+                    "|  - Search Sells Transaction [T]          - Search Purchased Transaction [T]  |\n" +
+                    "|  - List whole Stock Room [L]                                    -  Exit [Q]  |\n" +
+                    "--------------------------------------------------------------------------------\n" +
+                    "|  Enter Selection  :           ");
+             choice = input.nextLine().charAt(0);
+            System.out.println("================================================================================");
+            return choice;
+        }
+        catch (Exception e)
+        {
+            char c = invalidEntries();
+            switch (c)
+            {
+                case 'n' :
+                case 'N' : break;
+                case 'y' :
+                case 'Y' : choice = inventoryPanel();
+            }
+
+        }
+        return choice;
+    }
+
+
+    public static LocalDate searchForTransaction(){
+
+        try {
+            System.out.print("                          |[ Search Transactions ]| \n" +
+                    "================================================================================\n" +
+                    "|  Enter Date of Transaction [dd-mm-yyyy] :  ");
+            LocalDate transactionDate = LocalDate.parse(input.nextLine(), myFormatter);
+            System.out.println("--------------------------------------------------------------------------------");
+            return transactionDate;
+        }
+        catch (Exception e)
+        {
+            char c = invalidEntries();
+            switch (c)
+            {
+                case 'n' :
+                case 'N' : break;
+                case 'y' :
+                case 'Y' : return searchForTransaction();
+            }
+        }
+        return null;
+    }
+
+
 
 
 }

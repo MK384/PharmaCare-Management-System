@@ -6,7 +6,7 @@ import dynamic.area.Product;
 import java.time.LocalDate;
 import java.util.*;
 
-public class orderImp implements Order {
+public class OrderImp implements Order {
 
     List<Pack> itemsList = new ArrayList<>();
     String client;
@@ -14,7 +14,7 @@ public class orderImp implements Order {
     double discount = 0.0;
 
 
-    public orderImp(String client, LocalDate orderingDate) {
+    public OrderImp(String client, LocalDate orderingDate) {
         this.client = client;
         this.orderingDate = orderingDate;
     }
@@ -27,6 +27,7 @@ public class orderImp implements Order {
         return totalCost;
     }
 
+    @Override
     public double getTotalCost() {
         return getNetCost() - getDiscount();
     }
@@ -90,14 +91,13 @@ public class orderImp implements Order {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof orderImp)) return false;
-        orderImp packs = (orderImp) o;
-        return client.equals(packs.client) && Objects.equals(orderingDate, packs.orderingDate);
+        if (!(o instanceof OrderImp order)) return false;
+        return Objects.equals(orderingDate, order.orderingDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(client, orderingDate);
+        return Objects.hash(orderingDate);
     }
 
     @Override

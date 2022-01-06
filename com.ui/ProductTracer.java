@@ -18,7 +18,7 @@ public class ProductTracer {
     private final static int PACK_SPACE = "   Pack Num.    ".length();
 
 
-    public static void traceHeader(ProductStock p){
+    public static void traceProductStock(ProductStock p){
 
         System.out.println("");
         System.out.println("");

@@ -12,7 +12,7 @@ import records.area.transactions.TransFile;
 import records.area.transactions.TransactionRecords;
 
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -64,7 +64,7 @@ public class RecordsDataBase implements DataBaseAccess {
     }
 
     @Override
-    public List<Order> searchSales(Date orderingDate) throws IOException, ClassNotFoundException {
+    public List<Order> searchSales(LocalDate orderingDate) throws IOException, ClassNotFoundException {
         return salesRecords.retrieve(orderingDate);
     }
 
@@ -79,7 +79,7 @@ public class RecordsDataBase implements DataBaseAccess {
     }
 
     @Override
-    public List<Order> searchPurchases(Date orderingDate) throws IOException, ClassNotFoundException {
+    public List<Order> searchPurchases(LocalDate orderingDate) throws IOException, ClassNotFoundException {
         return purchasesRecords.retrieve(orderingDate);
     }
 

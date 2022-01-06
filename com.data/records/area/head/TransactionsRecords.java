@@ -1,13 +1,11 @@
 package records.area.head;
 
-import dynamic.area.Pack;
 import dynamic.area.head.Order;
 import records.area.transactions.TransFile;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface TransactionsRecords {
@@ -17,7 +15,7 @@ public interface TransactionsRecords {
 
     List<Order> retrieveAll() throws IOException, ClassNotFoundException;
 
-    List<Order> retrieve(Date date) throws IOException, ClassNotFoundException;
+    List<Order> retrieve(LocalDate date) throws IOException, ClassNotFoundException;
 
     Order retrieve(File file) throws IOException, ClassNotFoundException;
 
