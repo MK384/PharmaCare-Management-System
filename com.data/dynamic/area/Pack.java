@@ -15,10 +15,19 @@ public class Pack implements Serializable , Comparable<Pack> {
 
    private Product product;
    private int quantity;
-   private double price;
    private String provider;
    private LocalDate expDate;
    private LocalDate loadDate;
+   private double discount;
+
+
+   public void setDiscount(double discount) {
+      this.discount = discount;
+   }
+
+   public double getDiscount() {
+      return discount;
+   }
 
    public Pack (Product product , int quantity){
       this.product = product;
@@ -43,12 +52,8 @@ public class Pack implements Serializable , Comparable<Pack> {
       this.quantity = quantity;
    }
 
-   public double getPrice() {
-      return price;
-   }
-
-   public void setPrice(double price) {
-      this.price = price;
+   public double getCost() {
+      return product.getPrice()*getQuantity();
    }
 
    public String getProvider() {
@@ -88,12 +93,12 @@ public class Pack implements Serializable , Comparable<Pack> {
       if (this == o) return true;
       if (!(o instanceof Pack)) return false;
       Pack pack = (Pack) o;
-      return quantity == pack.quantity && Double.compare(pack.price, price) == 0 && product.equals(pack.product) && Objects.equals(provider, pack.provider) && Objects.equals(expDate, pack.expDate) && Objects.equals(loadDate, pack.loadDate);
+      return quantity == pack.quantity && product.equals(pack.product) && Objects.equals(provider, pack.provider) && Objects.equals(expDate, pack.expDate) && Objects.equals(loadDate, pack.loadDate);
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(product, quantity, price, provider, expDate, loadDate);
+      return Objects.hash(product, quantity, provider, expDate, loadDate);
    }
 
    @Override

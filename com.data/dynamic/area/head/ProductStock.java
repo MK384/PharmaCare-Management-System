@@ -31,8 +31,6 @@ public interface ProductStock extends Iterable<Pack>, Serializable {
 
     void setProduct(Product p);
 
-    void setPartPlace (String partPlace);
-
      void addPack(Pack pack);
 
      void removePack(Pack pack);
@@ -43,7 +41,7 @@ public interface ProductStock extends Iterable<Pack>, Serializable {
 
      int totalQuantity();
 
-    public LocalDate getNearestExpDate();
+     LocalDate getNearestExpDate();
 
      List<Pack> extract(int q);
 

@@ -32,7 +32,7 @@ public class ScannerUI {
         System.out.print("| SalesRoom Directory :  ");
         String saleskDir = input.nextLine();
         System.out.println("------------------------------------------------------------------------------------------------------------------------");
-        System.out.print("| Purchases Directory : ");
+        System.out.print("| Purchases Directory :  ");
         String purchaseskDir = input.nextLine();
         System.out.println("------------------------------------------------------------------------------------------------------------------------");
 
@@ -105,11 +105,13 @@ public class ScannerUI {
             assert p != null;
             p.setName(Product_Name);
             p.setID(ID);
+            p.setPrice(price);
+            p.setPartPlace(partPlace);
             Pack pack = new Pack(p);
             pack.setQuantity(quantity);
             pack.setExpDate(expDate);
             pack.setLoadDate(LocalDate.now());
-            pack.setPrice(price);
+            pack.setDiscount(discount);
 
             packList.add(pack);
 
@@ -119,7 +121,7 @@ public class ScannerUI {
                     return packList;
                 case 'y':
                 case 'Y': {
-                    packList.addAll(scanSoldProducts(Num + 1));
+                    packList.addAll(scanPurchasedProducts(Num + 1));
                     return packList;
                 }
             }
@@ -130,7 +132,7 @@ public class ScannerUI {
 
                 case 'y':
                 case 'Y':
-                    return scanSoldProducts(Num);
+                    return scanPurchasedProducts(Num);
                 case 'n':
                 case 'N':
                     return packList;

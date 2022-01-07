@@ -9,7 +9,6 @@ import java.util.*;
 public class ProductStockImp implements ProductStock {
 
     List<Pack> packages;
-    String partPlace;
     Product product;
 
 
@@ -17,13 +16,11 @@ public class ProductStockImp implements ProductStock {
         product = p.getProduct();
         packages = new ArrayList<>();
         packages.add(p);
-        partPlace = "Not Found";
     }
 
     public ProductStockImp(Product p) {
         product = p;
         packages = new ArrayList<>();
-        partPlace = "Not Found";
     }
 
 
@@ -34,17 +31,12 @@ public class ProductStockImp implements ProductStock {
 
     @Override
     public String getPartPlace() {
-        return this.partPlace;
+        return product.getPartPlace();
     }
 
     @Override
     public void setProduct(Product p) {
         this.product = p;
-    }
-
-    @Override
-    public void setPartPlace(String partPlace) {
-        this.partPlace = partPlace;
     }
 
     @Override

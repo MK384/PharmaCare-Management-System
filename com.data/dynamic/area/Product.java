@@ -8,8 +8,20 @@ public  class Product implements Serializable {
 
     protected String name;
     protected int ID;
-    protected int price;
+    protected double price;
+    protected String partPlace;
 
+    public void setPartPlace(String partPlace) {
+        this.partPlace = partPlace;
+    }
+
+    public String getPartPlace() {
+        return partPlace;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public Product() {
         name = null;
@@ -23,7 +35,7 @@ public  class Product implements Serializable {
         return ID;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 

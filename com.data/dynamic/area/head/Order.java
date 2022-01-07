@@ -23,9 +23,7 @@ public interface Order extends Iterable<Pack>, Serializable {
 
     void addItem( Pack pack );
 
-    void setDiscount( double discountFactor );
-
-    double getDiscount();
+    double getTotalDiscount();
 
      List<Pack> getItemList();
 

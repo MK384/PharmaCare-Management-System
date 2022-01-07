@@ -89,6 +89,7 @@ public class MainBusiness {
         Order order = uiManager.scanPurchase();
         dataManager.purchase(order);
         OrderTracer.orderDonePanel();
+        uiManager.printOrder(order);
     }
 
     private static void exitProcess() {

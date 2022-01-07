@@ -22,14 +22,14 @@ public class OrderImp implements Order {
     public double getNetCost() {
         int totalCost = 0;
         for (Pack p : itemsList) {
-            totalCost += p.getPrice() * p.getQuantity();
+            totalCost += p.getCost();
         }
         return totalCost;
     }
 
     @Override
     public double getTotalCost() {
-        return getNetCost() - getDiscount();
+        return getNetCost() - getTotalDiscount();
     }
 
     @Override
@@ -69,13 +69,14 @@ public class OrderImp implements Order {
     }
 
     @Override
-    public double getDiscount() {
-        return discount;
-    }
+    public double getTotalDiscount() {
 
-    @Override
-    public void setDiscount(double discountFactor) {
-        this.discount = discountFactor * getTotalCost();
+        double total = 0;
+        for (Pack p:itemsList
+             ) {
+            total += p.getDiscount();
+        }
+        return total;
     }
 
     @Override
