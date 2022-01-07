@@ -33,6 +33,11 @@ public class OrderImp implements Order {
     }
 
     @Override
+    public void setPackList(List<Pack> packList) {
+        itemsList = packList;
+    }
+
+    @Override
     public String getClient() {
         return client;
     }

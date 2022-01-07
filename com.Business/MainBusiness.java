@@ -79,7 +79,8 @@ public class MainBusiness {
                 return;
             }
         }
-        dataManager.sell(order);
+
+        order.setPackList(dataManager.sell(order));
         OrderTracer.orderDonePanel();
         uiManager.printOrder(order);
     }

@@ -222,7 +222,9 @@ public class ScannerUI {
         Order order = new OrderImp(merchant,LocalDate.now());
 
         for (Pack pack: packList)
-            order.addItem(pack);
+        {
+            pack.setProvider(merchant);
+            order.addItem(pack);}
 
         return order;
 

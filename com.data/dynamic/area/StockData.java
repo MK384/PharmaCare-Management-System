@@ -4,6 +4,7 @@ import dynamic.area.head.Order;
 import dynamic.area.head.ProductStock;
 import dynamic.area.head.ProductStockImp;
 
+import java.io.IOException;
 import java.util.*;
 
 public class StockData implements Iterable<ProductStock> {
@@ -42,6 +43,10 @@ public class StockData implements Iterable<ProductStock> {
       else {
       ps.addPack(pack);
       stockList.put(p,ps);}
+   }
+
+   public List<ProductStock> retrieveAllStock() {
+      return new ArrayList<>(stockList.values());
    }
 
    public List<Pack> extractQuantity(Product p , int quantity){

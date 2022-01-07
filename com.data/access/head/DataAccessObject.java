@@ -59,7 +59,7 @@ public class DataAccessObject implements DataManager {
 
     @Override
     public List<ProductStock> retrieveAllStock() throws IOException, ClassNotFoundException {
-        return new ArrayList<>(baseDAO.retrieveAllStock().values());
+        return stockDAO.retrieveAllStock();
     }
 
     @Override
