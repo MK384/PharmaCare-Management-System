@@ -2,6 +2,7 @@ package dynamic.area;
 
 import dynamic.area.head.Order;
 import dynamic.area.head.ProductStock;
+import dynamic.area.head.ProductStockImp;
 
 import java.util.*;
 
@@ -32,8 +33,15 @@ public class StockData implements Iterable<ProductStock> {
 
    public void update(Product p, Pack pack){
       ProductStock ps = search(p);
+      if (ps == null)
+      {
+         ProductStock newPS = new ProductStockImp(p);
+         newPS.addPack(pack);
+         stockList.put(p,newPS);
+      }
+      else {
       ps.addPack(pack);
-      stockList.put(p,ps);
+      stockList.put(p,ps);}
    }
 
    public List<Pack> extractQuantity(Product p , int quantity){

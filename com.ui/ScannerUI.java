@@ -262,6 +262,8 @@ public class ScannerUI {
     public static char inventoryPanel(){
         char choice = 'n';
         try {
+            System.out.println("");
+            System.out.println("");
             System.out.print("================================================================================\n" +
                     "|                           |[ INVENTORY PANEL ]|                              |\n" +
                     "--------------------------------------------------------------------------------\n" +
