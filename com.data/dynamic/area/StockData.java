@@ -20,9 +20,10 @@ public class StockData implements Iterable<ProductStock> {
    }
 
    public ProductStock search(Product product){
+      if (product == null)
+         return null;
       return stockList.get(product);
    }
-
 
    public boolean isAvailable(Product product , int required){
       if (!stockList.containsKey(product))

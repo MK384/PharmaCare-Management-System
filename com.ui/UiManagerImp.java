@@ -32,6 +32,9 @@ public class UiManagerImp implements UIManager {
 
     @Override
     public void printProductDetails(ProductStock p) {
+        if (p == null)
+            ProductTracer.notFoundProduct();
+        assert p != null;
         ProductTracer.traceProductStock(p);
     }
 

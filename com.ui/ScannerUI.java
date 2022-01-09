@@ -249,15 +249,20 @@ public class ScannerUI {
 
         Product p = new Product();
         System.out.print("================================================================================\n" +
-                "|  Enter Product Name or ID :       ");
+                "|  Enter Product ID :         ");
         String id_name = input.nextLine();
         try {
-
-            p.setID(Integer.parseInt(id_name));
+            int id = Integer.parseInt(id_name);
+            p.setID(id);
         }
         catch (Exception e)
         {
-            p.setName(id_name);
+            char choice = invalidEntries();
+            switch (choice){
+                case 'n','N' -> {return null;}
+                case 'y','Y' -> {return searchInStock();}
+            }
+
         }
         System.out.println("--------------------------------------------------------------------------------");
         return p;

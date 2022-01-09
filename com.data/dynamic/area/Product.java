@@ -57,11 +57,7 @@ public  class Product implements Serializable {
 
     @Override
     public int hashCode() {
-         if (name == null && ID != 0)
             return Objects.hash(ID);
-        else if (name != null && ID == 0)
-            return Objects.hash(name);
-        else return Objects.hash(name, ID);
     }
 
     @Override

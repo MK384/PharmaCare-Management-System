@@ -35,21 +35,26 @@ public class DataAccessObject implements DataManager {
     }
 
     @Override
-    public List<Pack> purchase(Order order) {
+    public List<Pack> purchase(Order order) throws IOException, ClassNotFoundException {
 
         for (Pack p : order)
             stockDAO.update(p.getProduct(), p);
+        stockDAO.addPurchaseOrder(order);
+        baseDAO.storeNewPurchase(order);
         return order.getItemList();
     }
 
     @Override
-    public List<Pack> sell(Order order) {
-        List<Pack> total = new LinkedList<>();
-
-        for (Pack p : order)
-            total.addAll(stockDAO.extractQuantity(p.getProduct(), p.getQuantity()));
-
-        return total;
+    public List<Pack> sell(Order order) throws IOException {
+        List<Pack> packList = new ArrayList<>();
+        for (Pack p : order) {
+            List<Pack> packList1 = stockDAO.extractQuantity(p.getProduct(), p.getQuantity());
+            packList1.get(0).setDiscount(p.getDiscount());
+            packList.addAll(packList1);
+            baseDAO.updateStock(stockDAO.search(p.getProduct()));
+        }
+        baseDAO.storeNewSale(order);
+        return packList;
     }
 
     @Override
@@ -58,13 +63,20 @@ public class DataAccessObject implements DataManager {
     }
 
     @Override
-    public List<ProductStock> retrieveAllStock() throws IOException, ClassNotFoundException {
+    public List<ProductStock> retrieveAllStock() {
         return stockDAO.retrieveAllStock();
     }
 
     @Override
-    public List<Order> searchSales(LocalDate date) throws IOException, ClassNotFoundException {
-        return baseDAO.searchSales(date);
+    public List<Order> searchSales(LocalDate date)  {
+        List<Order> AllList =  stockDAO.salesHistory();
+        List<Order> required =  new ArrayList<>();
+        for (Order o: AllList
+             ) {
+            if (o.getOrderingDate().equals(date))
+               required.add(o);
+        }
+        return required;
     }
 
     @Override
@@ -73,7 +85,7 @@ public class DataAccessObject implements DataManager {
     }
 
     @Override
-    public List<Order> searchSales(Date date, String client) throws IOException, ClassNotFoundException {
+    public List<Order> searchSales(LocalDate date, String client) throws IOException, ClassNotFoundException {
         List<Order> list = new LinkedList<>();
         for(Order o: baseDAO.searchSales(client)) {
             if (o.getOrderingDate().equals(date))
@@ -83,8 +95,15 @@ public class DataAccessObject implements DataManager {
     }
 
     @Override
-    public List<Order> searchPurchase(LocalDate date) throws IOException, ClassNotFoundException {
-        return baseDAO.searchPurchases(date);
+    public List<Order> searchPurchase(LocalDate date) {
+        List<Order> AllList =  stockDAO.purchasesHistory();
+        List<Order> required =  new ArrayList<>();
+        for (Order o: AllList
+        ) {
+            if (o.getOrderingDate().equals(date))
+                required.add(o);
+        }
+        return required;
     }
 
     @Override
@@ -93,7 +112,7 @@ public class DataAccessObject implements DataManager {
     }
 
     @Override
-    public List<Order> searchPurchase(Date date, String client) throws IOException, ClassNotFoundException {
+    public List<Order> searchPurchase(LocalDate date, String client) throws IOException, ClassNotFoundException {
         List<Order> list = new LinkedList<>();
         for(Order o: baseDAO.searchPurchases(client)) {
             if (o.getOrderingDate().equals(date))

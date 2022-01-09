@@ -15,21 +15,21 @@ import java.util.Map;
 
 public interface DataBaseAccess {
 
-    StockFile storeNewProductStock(ProductStock ps) throws IOException;
+    void storeNewProductStock(ProductStock ps) throws IOException;
 
-    StockFile updateStock(ProductStock ps) throws IOException;
+    void updateStock(ProductStock ps) throws IOException;
 
-    StockFile updateStock(Pack p) throws IOException, ClassNotFoundException;
+    void updateStock(Pack p) throws IOException, ClassNotFoundException;
 
     ProductStock searchStock (Product p) throws IOException, ClassNotFoundException;
 
-    TransFile storeNewSale(Order o) throws IOException;
+    void storeNewSale(Order o) throws IOException;
 
     List<Order> searchSales(LocalDate orderingDate) throws IOException, ClassNotFoundException;
 
     List<Order> searchSales(String clientName) throws IOException, ClassNotFoundException;
 
-    TransFile storeNewPurchase (Order o) throws IOException;
+    void storeNewPurchase (Order o) throws IOException, ClassNotFoundException;
 
     List<Order> searchPurchases(LocalDate orderingDate) throws IOException, ClassNotFoundException;
 

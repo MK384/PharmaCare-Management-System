@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 public class MainBusiness {
 
-
     private static DataManager dataManager;
     private static UIManager uiManager;
 
@@ -71,7 +70,7 @@ public class MainBusiness {
             uiManager.printOrder(o);
     }
 
-    private static void makeSaleProcess() {
+    private static void makeSaleProcess() throws IOException {
         Order order = uiManager.scanSell();
         for (Pack p : order) {
             if (!dataManager.isAvailable(p.getProduct(), p.getQuantity())) {
@@ -79,13 +78,13 @@ public class MainBusiness {
                 return;
             }
         }
-
         order.setPackList(dataManager.sell(order));
+
         OrderTracer.orderDonePanel();
         uiManager.printOrder(order);
     }
 
-    private static void makePurchaseProcess() {
+    private static void makePurchaseProcess() throws IOException, ClassNotFoundException {
         Order order = uiManager.scanPurchase();
         dataManager.purchase(order);
         OrderTracer.orderDonePanel();

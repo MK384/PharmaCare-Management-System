@@ -27,7 +27,7 @@ public class ProductTracer {
         System.out.print("|  Product Name :"+StockTracer.centerText(NAME_SPACE,p.getProduct().getName())+"|");
         System.out.print("|  Product ID :"+StockTracer.centerText(ID_SPACE,String.valueOf(p.getProduct().getID()))+"|");
         System.out.print("| Type :"+StockTracer.centerText(TYPE_SPACE, p.getProduct().getClass().getSimpleName())+"|");
-        System.out.println("| Price :"+StockTracer.centerText(PRICE_SPACE,String.valueOf(p.getProduct().getPrice()))+"|");
+        System.out.println("| Price :"+StockTracer.centerText(PRICE_SPACE, p.getProduct().getPrice() +"  L.E  ")+"|");
 
         System.out.print("| Place in Stock :"+StockTracer.centerText(PLACE_SPACE,p.getPartPlace())+"|");
         System.out.println("| Notes :                                                          |");
@@ -47,13 +47,32 @@ public class ProductTracer {
         System.out.println("==================================================================================================================================");
     }
 
+    public static void notFoundProduct(){
+
+        System.out.println("");
+        System.out.println("");
+        System.out.println("                                                    |[ Product Details ]|\n" +
+                "==================================================================================================================================\n" +
+                "|  Product Name :    Not Found   ||  Product ID :   Not Found   || Type :      Not Found        || Price :      Not Found        |\n" +
+                "----------------------------------------------------------------------------------------------------------------------------------\n" +
+                "| Place in Stock :            Not Found            || Notes :                                                                     |\n" +
+                "----------------------------------------------------------------------------------------------------------------------------------\n" +
+                "|                                                                                                                                 |\n" +
+                "========================================================={ Details }==============================================================\n" +
+                "|   Pack Num.    ||     Quantity    ||    Merchant name    ||           Loading Date          ||            Expire Date          |\n" +
+                "==================================================================================================================================\n" +
+                "|     Empty      ||       Empty     ||        Empty        ||               Empty              ||              Empty             |\n" +
+                "----------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("==================================================================================================================================");
+    }
+
 
     private static void tracePack(Pack p , int i){
 
-        System.out.println("|" + StockTracer.centerText(PACK_SPACE,String.valueOf(i)) + "|");
-        System.out.println("|"+ StockTracer.centerText(QUANTITY_SPACE,String.valueOf(p.getQuantity())) + "|" );
-        System.out.println("|"  + StockTracer.centerText(PROVIDER_SPACE,p.getProvider()) + "|"  );
-        System.out.println("|"  + StockTracer.centerText(LOAD_DATE_SPACE,p.getLoadDate().toString()) + "|");
+        System.out.print("|" + StockTracer.centerText(PACK_SPACE,String.valueOf(i)) + "|");
+        System.out.print("|"+ StockTracer.centerText(QUANTITY_SPACE,String.valueOf(p.getQuantity())) + "|" );
+        System.out.print("|"  + StockTracer.centerText(PROVIDER_SPACE,p.getProvider()) + "|"  );
+        System.out.print("|"  + StockTracer.centerText(LOAD_DATE_SPACE,p.getLoadDate().toString()) + "|");
         System.out.println("|"  + StockTracer.centerText(EXP_DATE_SPACE,p.getExpDate().toString()) + "|");
 
     }

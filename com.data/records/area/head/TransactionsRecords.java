@@ -11,7 +11,7 @@ import java.util.List;
 public interface TransactionsRecords {
 
 
-    TransFile storeTransaction(Order order) throws IOException;
+    void storeTransaction(Order order) throws IOException;
 
     List<Order> retrieveAll() throws IOException, ClassNotFoundException;
 

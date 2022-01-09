@@ -6,9 +6,7 @@ import dynamic.area.head.Order;
 import dynamic.area.head.ProductStock;
 import records.area.head.DataBaseAccess;
 import records.area.head.TransactionsRecords;
-import records.area.stockroom.StockFile;
 import records.area.stockroom.StockRecords;
-import records.area.transactions.TransFile;
 import records.area.transactions.TransactionRecords;
 
 import java.io.IOException;
@@ -26,31 +24,31 @@ public class RecordsDataBase implements DataBaseAccess {
     private static final String DEFAULT_SALES_PATH = "C:\\Users\\moham\\Documents";
     private static final String DEFAULT_PURCHASES_PATH = "C:\\Users\\moham\\Documents";
 
-    public RecordsDataBase() {
+    public RecordsDataBase() throws IOException, ClassNotFoundException {
         salesRecords = new TransactionRecords(DEFAULT_SALES_PATH);
         purchasesRecords = new TransactionRecords(DEFAULT_PURCHASES_PATH);
         stockRecords = new StockRecords(DEFAULT_STOCK_PATH);
     }
 
-    public RecordsDataBase(String stockDirectory,String salesDirectory,String purchasesDirectory ){
+    public RecordsDataBase(String stockDirectory,String salesDirectory,String purchasesDirectory ) throws IOException, ClassNotFoundException {
         salesRecords = new TransactionRecords(salesDirectory);
         purchasesRecords = new TransactionRecords(purchasesDirectory);
         stockRecords = new StockRecords(stockDirectory);
     }
 
     @Override
-    public StockFile storeNewProductStock(ProductStock ps) throws IOException {
-        return stockRecords.storePS(ps);
+    public void storeNewProductStock(ProductStock ps) throws IOException {
+         stockRecords.storeNewPS(ps);
     }
 
     @Override
-    public StockFile updateStock(ProductStock ps) throws IOException {
-        return stockRecords.update(ps);
+    public void updateStock(ProductStock ps) throws IOException {
+         stockRecords.update(ps);
     }
 
     @Override
-    public StockFile updateStock(Pack p) throws IOException, ClassNotFoundException {
-        return stockRecords.update(p);
+    public void updateStock(Pack p) throws IOException, ClassNotFoundException {
+         stockRecords.update(p);
     }
 
     @Override
@@ -59,8 +57,8 @@ public class RecordsDataBase implements DataBaseAccess {
     }
 
     @Override
-    public TransFile storeNewSale(Order o) throws IOException {
-        return salesRecords.storeTransaction(o);
+    public void storeNewSale(Order o) throws IOException {
+         salesRecords.storeTransaction(o);
     }
 
     @Override
@@ -74,8 +72,11 @@ public class RecordsDataBase implements DataBaseAccess {
     }
 
     @Override
-    public TransFile storeNewPurchase(Order o) throws IOException {
-        return purchasesRecords.storeTransaction(o);
+    public void storeNewPurchase(Order o) throws IOException, ClassNotFoundException {
+         purchasesRecords.storeTransaction(o);
+        for (Pack p: o
+             ) {updateStock(p);
+        }
     }
 
     @Override

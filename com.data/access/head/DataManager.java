@@ -15,9 +15,9 @@ public interface DataManager {
 
     ProductStock getProductStock(Product p);
 
-    List<Pack> purchase(Order order);
+    List<Pack> purchase(Order order) throws IOException, ClassNotFoundException;
 
-    List<Pack> sell(Order order);
+    List<Pack> sell(Order order) throws IOException;
 
     boolean isAvailable(Product p, int quantity);
 
@@ -27,12 +27,12 @@ public interface DataManager {
 
     List<Order> searchSales(String client) throws IOException, ClassNotFoundException;
 
-    List<Order> searchSales(Date date , String client) throws IOException, ClassNotFoundException;
+    List<Order> searchSales(LocalDate date , String client) throws IOException, ClassNotFoundException;
 
     List<Order> searchPurchase(LocalDate date) throws IOException, ClassNotFoundException;
 
     List<Order> searchPurchase(String client) throws IOException, ClassNotFoundException;
 
-    List<Order> searchPurchase(Date date , String client) throws IOException, ClassNotFoundException;
+    List<Order> searchPurchase(LocalDate date , String client) throws IOException, ClassNotFoundException;
 
 }
