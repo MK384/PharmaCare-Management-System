@@ -17,10 +17,6 @@ public class DataAccessObject implements DataManager {
     StockData stockDAO;
     DataBaseAccess baseDAO;
 
-    public DataAccessObject() throws IOException, ClassNotFoundException {
-        baseDAO = new RecordsDataBase();
-        stockDAO = new StockData(baseDAO.retrieveAllStock(), baseDAO.retrieveAllSales(), baseDAO.retrieveAllPurchases());
-    }
 
     public DataAccessObject(String stockDirectory, String salesDirectory, String purchasesDirectory) throws IOException, ClassNotFoundException {
 
@@ -53,6 +49,8 @@ public class DataAccessObject implements DataManager {
             packList.addAll(packList1);
             baseDAO.updateStock(stockDAO.search(p.getProduct()));
         }
+        order.setPackList(packList);
+        stockDAO.addSaleOrder(order);
         baseDAO.storeNewSale(order);
         return packList;
     }

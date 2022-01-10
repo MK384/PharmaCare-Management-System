@@ -7,6 +7,7 @@ import head.UIManager;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class MainBusiness {
 
@@ -14,12 +15,16 @@ public class MainBusiness {
     private static UIManager uiManager;
 
 
+    private static final String StockRoom_Directory = "com.data\\records/area\\filesroom\\stock";
+    private static final String SalesRoom_Directory = "com.data\\records/area\\filesroom\\sales";
+    private static final String Purchases_Directory = "com.data\\records/area\\filesroom\\purchases";
+
     public MainBusiness() {uiManager = new UiManagerImp();}
 
     public static void run() throws IOException, ClassNotFoundException {
         uiManager = new UiManagerImp();
-        String[] directories = uiManager.scanDirectories();
-        dataManager = new DataAccessObject(directories[0], directories[1], directories[2]);
+       // String[] directories = uiManager.scanDirectories();
+        dataManager = new DataAccessObject(StockRoom_Directory,SalesRoom_Directory, Purchases_Directory);
 
         char action= uiManager.printInventoryPanel();
         while (action != 'q' && action != 'Q')
@@ -61,12 +66,18 @@ public class MainBusiness {
     }
 
     private static void showSalesProcess(LocalDate date) throws IOException, ClassNotFoundException {
-        for (Order o : dataManager.searchSales(date))
+        List<Order> orderList = dataManager.searchSales(date);
+        if (orderList.isEmpty())
+        { uiManager.printEmptyOrder(date,"Not Fount"); return;}
+        for (Order o : orderList )
             uiManager.printOrder(o);
     }
 
     private static void showPurchasesProcess(LocalDate date) throws IOException, ClassNotFoundException {
-        for (Order o : dataManager.searchPurchase(date))
+        List<Order> orderList = dataManager.searchPurchase(date);
+        if (orderList.isEmpty())
+        { uiManager.printEmptyOrder(date,"Not Fount"); return;}
+        for (Order o : orderList )
             uiManager.printOrder(o);
     }
 
@@ -79,7 +90,6 @@ public class MainBusiness {
             }
         }
         order.setPackList(dataManager.sell(order));
-
         OrderTracer.orderDonePanel();
         uiManager.printOrder(order);
     }

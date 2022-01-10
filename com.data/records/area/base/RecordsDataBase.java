@@ -20,15 +20,7 @@ public class RecordsDataBase implements DataBaseAccess {
     private final TransactionsRecords purchasesRecords;
      private final StockRecords stockRecords;
 
-    private static final String DEFAULT_STOCK_PATH = "C:\\Users\\moham\\Documents";
-    private static final String DEFAULT_SALES_PATH = "C:\\Users\\moham\\Documents";
-    private static final String DEFAULT_PURCHASES_PATH = "C:\\Users\\moham\\Documents";
 
-    public RecordsDataBase() throws IOException, ClassNotFoundException {
-        salesRecords = new TransactionRecords(DEFAULT_SALES_PATH);
-        purchasesRecords = new TransactionRecords(DEFAULT_PURCHASES_PATH);
-        stockRecords = new StockRecords(DEFAULT_STOCK_PATH);
-    }
 
     public RecordsDataBase(String stockDirectory,String salesDirectory,String purchasesDirectory ) throws IOException, ClassNotFoundException {
         salesRecords = new TransactionRecords(salesDirectory);
