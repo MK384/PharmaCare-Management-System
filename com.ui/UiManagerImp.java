@@ -1,4 +1,3 @@
-import dynamic.area.Pack;
 import dynamic.area.Product;
 import dynamic.area.head.Order;
 import dynamic.area.head.ProductStock;
@@ -54,8 +53,13 @@ public class UiManagerImp implements UIManager {
     }
 
     @Override
-    public char printInventoryPanel() {
-        return ScannerUI.inventoryPanel();
+    public char printInventoryPanel(String cashier, String shiftCode) {
+        return ScannerUI.mainPanel(cashier, shiftCode);
+    }
+
+    @Override
+    public String[] scanShiftInfo() {
+        return ScannerUI.shiftRegister();
     }
 
     @Override

@@ -22,36 +22,46 @@ public class MainBusiness {
     public MainBusiness() {uiManager = new UiManagerImp();}
 
     public static void run() throws IOException, ClassNotFoundException {
+
         uiManager = new UiManagerImp();
-       // String[] directories = uiManager.scanDirectories();
         dataManager = new DataAccessObject(StockRoom_Directory,SalesRoom_Directory, Purchases_Directory);
 
-        char action= uiManager.printInventoryPanel();
+        String[] shiftInfo = uiManager.scanShiftInfo();
+
+        char action= uiManager.printInventoryPanel(shiftInfo[0], shiftInfo[1]);
         while (action != 'q' && action != 'Q')
             switch (action) {
                 case 'p', 'P' -> {
                     makePurchaseProcess();
-                    action = uiManager.printInventoryPanel();
+                    action = uiManager.printInventoryPanel(shiftInfo[0], shiftInfo[1]);
                 }
                 case 's', 'S' -> {
                     makeSaleProcess();
-                    action = uiManager.printInventoryPanel();
+                    action = uiManager.printInventoryPanel(shiftInfo[0], shiftInfo[1]);
                 }
                 case 'c', 'C' -> {
                     showProductDetailsProcess(uiManager.scanProduct());
-                    action = uiManager.printInventoryPanel();
+                    action = uiManager.printInventoryPanel(shiftInfo[0], shiftInfo[1]);
                 }
                 case 't', 'T' -> {
                     showSalesProcess(uiManager.scanOrderDate());
-                    action = uiManager.printInventoryPanel();
+                    action = uiManager.printInventoryPanel(shiftInfo[0], shiftInfo[1]);
                 }
                 case 'd', 'D' -> {
                     showPurchasesProcess(uiManager.scanOrderDate());
-                    action = uiManager.printInventoryPanel();
+                    action = uiManager.printInventoryPanel(shiftInfo[0], shiftInfo[1]);
                 }
                 case 'l', 'L' -> {
                     showStockRoomProcess();
-                    action = uiManager.printInventoryPanel();
+                    action = uiManager.printInventoryPanel(shiftInfo[0], shiftInfo[1]);
+                }
+                case 'w','W' -> {
+                    shiftInfo = uiManager.scanShiftInfo();
+                    action = uiManager.printInventoryPanel(shiftInfo[0], shiftInfo[1]);
+                }
+                default -> {
+                    ScannerUI.InvalidEntry();
+                    action = uiManager.printInventoryPanel(shiftInfo[0], shiftInfo[1]);
                 }
             }
         exitProcess();
@@ -82,7 +92,7 @@ public class MainBusiness {
     }
 
     private static void makeSaleProcess() throws IOException {
-        Order order = uiManager.scanSell();
+        var order = uiManager.scanSell();
         for (Pack p : order) {
             if (!dataManager.isAvailable(p.getProduct(), p.getQuantity())) {
                 OrderTracer.orderNotCompletePanel();
@@ -95,7 +105,7 @@ public class MainBusiness {
     }
 
     private static void makePurchaseProcess() throws IOException, ClassNotFoundException {
-        Order order = uiManager.scanPurchase();
+        var order = uiManager.scanPurchase();
         dataManager.purchase(order);
         OrderTracer.orderDonePanel();
         uiManager.printOrder(order);
@@ -103,9 +113,9 @@ public class MainBusiness {
 
     private static void exitProcess() {
         System.out.println("");
-        System.out.println("===================================================================\n" +
-                "|                         Program Ended                           |\n" +
-                "===================================================================");
+        System.out.println("                                 =================================================================\n" +
+                "                                                         | Program Ended |\n" +
+                "                                 =================================================================");
     }
 
 }

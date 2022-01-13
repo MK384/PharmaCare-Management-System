@@ -1,5 +1,6 @@
 import dynamic.area.head.ProductStock;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class StockTracer {
@@ -10,6 +11,9 @@ public class StockTracer {
     private final static int QUANTITY_SPACE = " Available Quantity ".length();
     private final static int PLACE_SPACE = "   Stock Place   ".length();
     private final static int DATE_SPACE = "     Nearest Exp.Date    ".length();
+
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("E, dd MMM yyyy");
+
 
     private static void traceStockRoomHeader() {
         System.out.println("");
@@ -26,7 +30,7 @@ public class StockTracer {
         System.out.print("|" + centerText(TYPE_SPACE, p.getProduct().getClass().getSimpleName()) + "|");
         System.out.print("|" + centerText(QUANTITY_SPACE, String.valueOf(p.totalQuantity())) + "|");
         System.out.print("|" + centerText(PLACE_SPACE, p.getPartPlace()) + "|");
-        System.out.println("|" + centerText(DATE_SPACE, p.getNearestExpDate().toString()) + "|");
+        System.out.println("|" + centerText(DATE_SPACE, p.getNearestExpDate().format(DATE_FORMATTER)) + "|");
 
     }
 

@@ -42,7 +42,7 @@ public class DataAccessObject implements DataManager {
 
     @Override
     public List<Pack> sell(Order order) throws IOException {
-        List<Pack> packList = new ArrayList<>();
+        var packList = new ArrayList<Pack>();
         for (Pack p : order) {
             List<Pack> packList1 = stockDAO.extractQuantity(p.getProduct(), p.getQuantity());
             packList1.get(0).setDiscount(p.getDiscount());

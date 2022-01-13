@@ -2,6 +2,7 @@ import dynamic.area.Pack;
 import dynamic.area.head.ProductStock;
 
 import javax.swing.table.TableRowSorter;
+import java.time.format.DateTimeFormatter;
 
 public class ProductTracer {
 
@@ -16,6 +17,8 @@ public class ProductTracer {
     private final static int PROVIDER_SPACE = "    Merchant name    ".length();
 
     private final static int PACK_SPACE = "   Pack Num.    ".length();
+
+    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("E, dd MMM yyyy");
 
 
     public static void traceProductStock(ProductStock p){
@@ -72,8 +75,8 @@ public class ProductTracer {
         System.out.print("|" + StockTracer.centerText(PACK_SPACE,String.valueOf(i)) + "|");
         System.out.print("|"+ StockTracer.centerText(QUANTITY_SPACE,String.valueOf(p.getQuantity())) + "|" );
         System.out.print("|"  + StockTracer.centerText(PROVIDER_SPACE,p.getProvider()) + "|"  );
-        System.out.print("|"  + StockTracer.centerText(LOAD_DATE_SPACE,p.getLoadDate().toString()) + "|");
-        System.out.println("|"  + StockTracer.centerText(EXP_DATE_SPACE,p.getExpDate().toString()) + "|");
+        System.out.print("|"  + StockTracer.centerText(LOAD_DATE_SPACE,p.getLoadDate().format(DATE_FORMATTER)) + "|");
+        System.out.println("|"  + StockTracer.centerText(EXP_DATE_SPACE,p.getExpDate().format(DATE_FORMATTER)) + "|");
 
     }
 

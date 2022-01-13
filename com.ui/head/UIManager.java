@@ -29,6 +29,8 @@ public interface UIManager {
 
     void printOrder(Order o);
 
-    char printInventoryPanel();
+    char printInventoryPanel(String cashier, String shiftCode);
+
+    String[] scanShiftInfo();
 
 }
