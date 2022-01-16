@@ -18,7 +18,7 @@ public class StockTracer {
     private static void traceStockRoomHeader() {
         System.out.println("");
         System.out.println("");
-        System.out.println("                                                           |[ ٍٍStockroom ]|                                                            ");
+        System.out.println("                                                           |[ StockRoom ]|                                                            ");
         System.out.println("======================================================================================================================================");
         System.out.println("|       Product Name     ||   Product  ID   ||       Type        || Available Quantity ||   Stock Place   ||     Nearest Exp.Date    |");
         System.out.println("======================================================================================================================================");

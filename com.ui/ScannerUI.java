@@ -4,6 +4,7 @@ import dynamic.area.head.Order;
 import dynamic.area.head.OrderImp;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class ScannerUI {
 
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("hh:mm:ss a");
 
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("E, dd MMM yyyy   hh:mm:ss a");
 
     private static final int order_date_length = "                                  ".length();
     //====================================================================================================================
@@ -30,6 +32,17 @@ public class ScannerUI {
     public static final int date_space = "                                     ".length();
 
     //====================================================================================================================
+
+
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+
+    //-------------------------------------------------------
+
+
+    //======================================================================================================================
 
     public static String[] scanDirectories() {
 
@@ -62,7 +75,7 @@ public class ScannerUI {
                 "                            |   Merchant Name  :     ");
         String Merchant_Name = input.nextLine();
         System.out.println("                            --------------------------------------------------------------------------------");
-        System.out.println("                            |   Order date     :"+StockTracer.centerText(order_date_length,LocalDate.now().toString())+"                         |");
+        System.out.println("                            |   Order date     :"+StockTracer.centerText(order_date_length, LocalDateTime.now().format(DATE_TIME_FORMATTER))+"                         |");
         System.out.println("                            ================================================================================\n" +
                 "                            |                                                                              |");
         return Merchant_Name;
@@ -72,10 +85,12 @@ public class ScannerUI {
         System.out.print("                            ================================================================================\n" +
                 "                            |                                [ Make Sale ]                                 |\n" +
                 "                            ================================================================================\n" +
-                "                            |           Client Name :    ");
+                "                            |   Client Name :    ");
         String client = input.nextLine();
-        System.out.print("================================================================================\n".indent(28) +
-                "|                                                                              |".indent(28));
+        System.out.println("                            --------------------------------------------------------------------------------");
+        System.out.println("                            |   Order date : "+StockTracer.centerText(order_date_length,LocalDateTime.now().format(DATE_TIME_FORMATTER))+"                            |");
+        System.out.println("                            ================================================================================\n" +
+                "                            |                                                                              |");
         return client;
     }
 
@@ -357,8 +372,9 @@ public class ScannerUI {
     }
 
     public static void InvalidEntry() {
-        System.out.println("         ==========================================[Invalid Entry .. Try Again]==========================================");
-        System.out.println("         ================================================================================================================");
+
+        System.out.println("         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"==========================================[Invalid Entry .. Try Again]=========================================="+ANSI_RESET);
+        System.out.println("         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"================================================================================================================"+ANSI_RESET);
     }
 
     private static String drawSpace(int n){
@@ -367,4 +383,42 @@ public class ScannerUI {
         return sb.toString();
     }
 
+    public static char mainPanelInWhite(String cashier, String shiftCode){
+        char choice = 'n';
+        try {
+            System.out.println("");
+            System.out.println("");
+            System.out.print("         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"                                        =================================                                       "+ANSI_RESET+"\n" +
+                    "         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"                                        "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"|[ PharmaCare Management Panel ]|                                       "+ANSI_RESET+"\n" +
+                    "         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"================================================================================================================"+ANSI_RESET+"\n" +
+                    "         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"|       Cashier :  "+StockTracer.centerText(cashier_spaces,cashier)+"    Time Now :   "+StockTracer.centerText(time_space, LocalTime.now().format(TIME_FORMATTER))+"  |"+ANSI_RESET+"\n" +
+                    "         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"----------------------------------------------------------------------------------------------------------------"+ANSI_RESET+"\n" +
+                    "         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"|       Shift Code : "+StockTracer.centerText(code_space,shiftCode)+"      Date  :      "+StockTracer.centerText(date_space,LocalDate.now().format(DATE_FORMATTER))+" |"+ANSI_RESET+"\n" +
+                    "         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"--------------------------------------{ Select an Operation To Perform }----------------------------------------"+ANSI_RESET+"\n" +
+                    "         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"|  - Purchase Items [P]                       - Sell Items [S]                   - List All in Stock Room [L]  |"+ANSI_RESET+"\n" +
+                    "         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"|  - Search in Sales  [T]                     - Search in Stock Room [C]            - Search in Purchases [D]  |"+ANSI_RESET+"\n" +
+                    "         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"|  - Change work Shift [W]                    -  Exit [Q]                                                      |"+ANSI_RESET+"\n" +
+                    "         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"----------------------------------------------------------------------------------------------------------------"+ANSI_RESET+"\n" +
+                    "         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"|  Enter Selection  :      ");
+            choice = input.nextLine().charAt(0);
+            System.out.println(ANSI_RESET+"         "+ANSI_WHITE_BACKGROUND+ANSI_BLACK+"================================================================================================================"+ANSI_RESET);
+            System.out.print(ANSI_RESET);
+            return choice;
+        }
+        catch (Exception e)
+        {
+            System.out.print(ANSI_WHITE_BACKGROUND+ANSI_BLACK);
+            char c = invalidEntries();
+            System.out.print(ANSI_RESET);
+            switch (c)
+            {
+                case 'n' :
+                case 'N' : break;
+                case 'y' :
+                case 'Y' : choice = mainPanel(cashier,shiftCode);
+            }
+
+        }
+        return choice;
+    }
 }

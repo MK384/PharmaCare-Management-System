@@ -4,7 +4,7 @@ import dynamic.area.Pack;
 import dynamic.area.Product;
 import dynamic.area.head.ProductStock;
 import dynamic.area.head.ProductStockImp;
-import records.area.handelers.StockFilesManager;
+import records.area.handelers.FilesManagerImp;
 import records.area.head.FilesManager;
 
 import java.io.*;
@@ -17,7 +17,7 @@ public class StockRecords {
     private final FilesManager fileManager;
 
     public StockRecords(String stockPath) {
-        fileManager = new StockFilesManager(stockPath);
+        fileManager = new FilesManagerImp(stockPath);
     }
 
     public void storeNewPS(ProductStock ps) throws IOException {

@@ -15,17 +15,24 @@ public class MainBusiness {
     private static UIManager uiManager;
 
 
-    private static final String StockRoom_Directory = "com.data\\records/area\\filesroom\\stock";
-    private static final String SalesRoom_Directory = "com.data\\records/area\\filesroom\\sales";
-    private static final String Purchases_Directory = "com.data\\records/area\\filesroom\\purchases";
+    private static final String StockRoom_Directory = "stock";
+    private static final String SalesRoom_Directory = "sales";
+    private static final String Purchases_Directory = "purchases";
 
+    //=================================================================================================
+
+//    private static final String StockRoom_Directory = "C:\\Users\\moham\\IdeaProjects\\Inventory_Project\\com.data\\records\\area\\filesroom\\stock";
+//    private static final String SalesRoom_Directory = "C:\\Users\\moham\\IdeaProjects\\Inventory_Project\\com.data\\records\\area\\filesroom\\sales";
+//    private static final String Purchases_Directory = "C:\\Users\\moham\\IdeaProjects\\Inventory_Project\\com.data\\records\\area\\filesroom\\purchases";
+//
     public MainBusiness() {uiManager = new UiManagerImp();}
 
     public static void run() throws IOException, ClassNotFoundException {
 
         uiManager = new UiManagerImp();
+       // String[] dirs = uiManager.scanDirectories();
         dataManager = new DataAccessObject(StockRoom_Directory,SalesRoom_Directory, Purchases_Directory);
-
+       // dataManager = new DataAccessObject(dirs[0], dirs[1],dirs[2]);
         String[] shiftInfo = uiManager.scanShiftInfo();
 
         char action= uiManager.printInventoryPanel(shiftInfo[0], shiftInfo[1]);

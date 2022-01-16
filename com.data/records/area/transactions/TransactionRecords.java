@@ -1,7 +1,7 @@
 package records.area.transactions;
 
 import dynamic.area.head.Order;
-import records.area.handelers.StockFilesManager;
+import records.area.handelers.FilesManagerImp;
 import records.area.head.FilesManager;
 import records.area.head.TransactionsRecords;
 
@@ -17,7 +17,7 @@ public class TransactionRecords implements TransactionsRecords {
 
 
     public TransactionRecords(String path){
-        this.filesManager = new StockFilesManager(path);
+        this.filesManager = new FilesManagerImp(path);
     }
 
     @Override

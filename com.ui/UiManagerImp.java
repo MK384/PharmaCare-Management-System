@@ -54,7 +54,7 @@ public class UiManagerImp implements UIManager {
 
     @Override
     public char printInventoryPanel(String cashier, String shiftCode) {
-        return ScannerUI.mainPanel(cashier, shiftCode);
+        return ScannerUI.mainPanelInWhite(cashier, shiftCode);
     }
 
     @Override

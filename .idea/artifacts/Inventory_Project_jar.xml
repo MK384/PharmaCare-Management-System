@@ -1,10 +1,11 @@
 <component name="ArtifactManager">
-  <artifact build-on-make="true" name="Inventory_Project:jar">
+  <artifact type="jar" name="Inventory_Project:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Inventory_Project_jar</output-path>
-    <root id="root">
-      <element id="archive" name="Inventory_Project.jar">
-        <element id="module-output" name="Inventory_Project" />
+    <root id="archive" name="Inventory_Project.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/com.Business/sources/meta/META-INF/MANIFEST.MF" />
       </element>
+      <element id="module-output" name="Inventory_Project" />
     </root>
   </artifact>
 </component>

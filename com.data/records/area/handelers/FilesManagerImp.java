@@ -4,32 +4,35 @@ import records.area.head.FilesManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class StockFilesManager implements FilesManager {
+public class FilesManagerImp implements FilesManager {
 
     protected File mainDirectory;
 
-    public StockFilesManager(String mainDirectory) {
-        File dir = new File(mainDirectory);
-        if (dir.isDirectory())
-            this.mainDirectory = dir;
-        else{
+    public FilesManagerImp(String mainDirectory) {
+        Path currentWorkingDir = Paths.get("").toAbsolutePath();
+        File dir = new File(currentWorkingDir.normalize().toString(),mainDirectory);
+        if (!dir.isDirectory())
             dir.mkdir();
-            this.mainDirectory = dir;}
+        this.mainDirectory = dir;
     }
-
-
 
     @Override
     public boolean isExist(String fileName) {
 
-
-        for (String s: Objects.requireNonNull(mainDirectory.list()))
-            if (s.contains(fileName))
-                return true;
+        try {
+            for (String s: Objects.requireNonNull(mainDirectory.list()))
+                if (s.contains(fileName))
+                    return true;
+        } catch (Exception e) {
+          //  e.printStackTrace();
+        }
         return false;
     }
 
@@ -54,7 +57,14 @@ public class StockFilesManager implements FilesManager {
 
     @Override
     public List<File> getAllFiles() {
-        return Arrays.asList(Objects.requireNonNull(mainDirectory.listFiles()));
+        ArrayList<File> files;
+        try {
+          files = new ArrayList<>(List.of(Objects.requireNonNull(mainDirectory.listFiles())));
+        }
+        catch (Exception e){
+            files = new ArrayList<>();
+        }
+        return  files;
     }
 
     @Override
@@ -66,4 +76,10 @@ public class StockFilesManager implements FilesManager {
 
         return null;
     }
+
+//    public static void main(String[] args)
+//    {
+//        Path currentWorkingDir = Paths.get("").toAbsolutePath();
+//        System.out.println(currentWorkingDir.normalize().toString());
+//    }
 }
