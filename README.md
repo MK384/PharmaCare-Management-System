@@ -1,5 +1,5 @@
-# Vent_Man_Project
-## A Drug ventory managment system Project  
+# PharmaCare
+## A Drug inventory managment system Project  
 ### Contributers :
 
 Mohammed Khaled 
